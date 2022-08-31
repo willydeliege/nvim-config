@@ -43,8 +43,8 @@ local on_attach = function(client, bufnr)
 	client.server_capabilities.documentFormattingProvider = false
 	client.server_capabilities.documentRangeFormattingProvider = false
 	-- nevim 0.7.x
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
+	-- client.resolved_capabilities.document_formatting = false
+	-- client.resolved_capabilities.document_range_formatting = false
 	--------------------------
 
 	-- Enable completion triggered by <c-x><c-o>
@@ -74,7 +74,6 @@ local on_attach = function(client, bufnr)
 
 	buf_set_keymap('n', '<Space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>',       options)
 	buf_set_keymap('x', '<Space>a', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', options)
-
 	-- buf_set_keymap('n', '<leader>wa',   '<cmd>lua vim.lsp.buf.add_workleader_folder()<CR>',          opts)
 	-- buf_set_keymap('n', '<leader>wr',   '<cmd>lua vim.lsp.buf.remove_workleader_folder()<CR>',       opts)
 	-- buf_set_keymap('n', '<leader>wl',   '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workleader_folders()))<CR>', opts)
@@ -170,9 +169,6 @@ local function setup_lsp(mason_lspconfig)
 		lsp_options.capabilities = (cmp_lsp).update_capabilities(capabilities)
 	end
 
-	-- for Flutter and Dart
-	-- don't put this on setup_handlers to set it because dart LSP is installed and maintained by akinsho/flutter-tools.nvim
-	lspconfig["dartls"].setup(lsp_options)
 
 	mason_lspconfig.setup_handlers({
 
