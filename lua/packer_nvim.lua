@@ -82,10 +82,17 @@ return packer.startup {
 			commit = commits.impatient_nvim,
 		}
 
-		use {
+		use { -- show startup time
 			'dstein64/vim-startuptime',
 			commit = commits.startuptime,
 			cmd = "StartupTime"
+		}
+
+		use { -- escape with jk or jj
+			"max397574/better-escape.nvim",
+			config = function()
+				require("better_escape").setup()
+			end,
 		}
 
 		use { -- Easily speed up your neovim startup time!. A faster version of filetype.vim
