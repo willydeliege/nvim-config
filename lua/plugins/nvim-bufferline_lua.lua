@@ -10,7 +10,7 @@
             middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
             indicator = {
                 icon = '▎', -- this should be omitted if indicator style is not 'icon'
-                style = 'icon',-- | 'underline' | 'none',
+                style = 'underline',-- | 'underline' | 'none',
             },
             buffer_close_icon = '',
             modified_icon = '●',
@@ -81,3 +81,12 @@
                 -- add custom logic
         }
     }
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
+-- ━━━━━━━━━━━━━━━━━━━❰ Mappings ❱━━━━━━━━━━━━━━━━━━ --
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
+local keymap = vim.api.nvim_set_keymap
+local opts =  {noremap = true, silent = true}
+keymap('n', '<leader>c', '<cmd>bdelete %<CR>', opts)
+keymap('n', '<leader>C', '<cmd>BufferLinePickClose<CR>', opts)
+keymap('n', '<tab>', '<cmd>BufferLineCycleNext<CR>', opts)
+keymap('n', '<s-tab>', '<cmd>BufferLineCyclePrev<CR>', opts)

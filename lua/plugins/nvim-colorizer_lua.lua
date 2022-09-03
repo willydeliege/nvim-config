@@ -31,6 +31,7 @@ colorizer.setup({
 	'dart',
 	'python',
 	'lua',
+	'java'
 	-- '*', -- all file type
 
 }, {mode = 'background', names = true, css = true, css_fn = true})

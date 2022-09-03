@@ -15,11 +15,11 @@
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 
 -- apply colorscheme without throwing any errors
-local apply_cs, _ = pcall(vim.cmd, 'colorscheme abscs')
+local apply_cs, _ = pcall(vim.cmd, 'colorscheme arctic')
 if not apply_cs then return end
 
 -- theme name
-vim.g.abscs_theme_name = 'aqua'
+-- vim.g.abscs_theme_name = 'aqua'
 
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━ --

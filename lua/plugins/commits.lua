@@ -47,6 +47,7 @@ return {
 	telescope_fzf_native_nvim = "",
 	telescope_media_files_nvim = "",
 	telescope_nvim = "",
+	project = "",
 	telescope_ui_select_nvim = "",
 	trouble_nvim = "",
 	vim_floaterm = "",

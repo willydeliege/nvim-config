@@ -89,8 +89,11 @@ opt.lazyredraw = true -- faster scrolling
 
 opt.wildignore = vim.opt.wildignore + '*.o,*.rej,*.so' -- patterns to ignore during file-navigation
 opt.completeopt = 'menuone,noselect,noinsert' -- completion options
-
--- -- configs
+opt.confirm = true
+opt.foldlevel = 20
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- -- config
 -- if vim.api.nvim_call_function('has', {'nvim-0.8'}) == 1 then
 -- 	vim.opt.cmdheight = 0 -- command height
 -- end

@@ -1,3 +1,4 @@
+---@diagnostic disable: cast-local-type
 
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ───────────────────────────────────────────────── --
@@ -21,14 +22,11 @@ local import_treecb, tree_cb = pcall(require, "nvim-tree.config")
 if import_treecb then
 	tree_cb = tree_cb.nvim_tree_callback
 end
-
 local keymap = vim.api.nvim_set_keymap
 local options = {noremap = true, silent = true}
 local cmd = vim.cmd -- execute Vim commands
 cmd('autocmd ColorScheme * highlight highlight NvimTreeBg guibg=None')
 cmd('autocmd FileType NvimTree setlocal winhighlight=Normal:NvimTreeBg')
-
-
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 nvim_tree.setup {
 	disable_netrw = false,
@@ -116,9 +114,8 @@ nvim_tree.setup {
 }
 
 -- Toggle Nvim-Tree
-keymap('n', '<leader>f', ':NvimTreeToggle<CR>', options)
-
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
+keymap('n', '<M-f>', '<cmd>NvimTreeToggle<CR>', options)
+-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 

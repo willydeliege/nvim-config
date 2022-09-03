@@ -13,10 +13,9 @@
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━❰ configs ❱━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-
 -- safely import telescope
-local telescope_imported_ok, telescope = pcall(require, 'telescope')
-if not telescope_imported_ok then return end
+local _ok, telescope = pcall(require, 'telescope')
+if not _ok then return end
 
 telescope.setup {
 
@@ -84,7 +83,7 @@ telescope.setup {
 
 		live_grep = {
 			preview = {
-				treesitter = false
+				treesitter = true
 			}
 		},
 
@@ -117,7 +116,6 @@ telescope.setup {
 			require("telescope.themes").get_dropdown {
 				winblend = 15,
 				layout_config = {
-					prompt_position = "top",
 					width = 64,
 					height = 15,
 				},
@@ -136,6 +134,7 @@ require('telescope').load_extension('fzf')
 require("telescope").load_extension('file_browser')
 require('telescope').load_extension('media_files')
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("projects")
 
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━ --
@@ -161,7 +160,7 @@ keymap('n', "th",   "<cmd>lua require('telescope.builtin').help_tags() <CR>", op
 keymap('n', "tm", "<cmd>lua require('telescope.builtin').keymaps() <CR>", options)
 
 --       --> show buffers/opened files
-keymap('n', "<C-b>", "<cmd>lua require('telescope.builtin').buffers() <CR>", options)
+-- keymap('n', "<C-b>", "<cmd>lua require('telescope.builtin').buffers() <CR>", options)
 keymap('n', "tb",  "<cmd>lua require('telescope.builtin').buffers() <CR>", options)
 
 --       --> show and grep current buffer
@@ -174,12 +173,13 @@ keymap('n', "tg", "<cmd>lua require('telescope.builtin').live_grep() <CR>", opti
 -- to change settings related to working directory, refer to rooter_nvim.lua config file
 
 -- Find files from current file's project
-keymap('n', "<C-p>", ":Telescope find_files <cr>", options)
-keymap('n', "tp",    ":Telescope find_files <cr>", options)
+-- keymap('n', "<C-p>", ":Telescope find_files <cr>", options)
+-- keymap('n', "tp",    ":Telescope find_files <cr>", options)
 -- show all files from current working directory
-keymap('n', "<C-f>", "<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') }) <CR>", options)
-keymap('n', "tf",    "<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') }) <CR>", options)
-
+-- keymap('n', "<C-f>", "<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') }) <CR>", options)
+keymap('n', "tf",    "<cmd>lua require('telescope.builtin').find_files() <CR>", options)
+keymap('n', "tr",    "<cmd>lua require('telescope.builtin').oldfiles() <CR>", options)
+keymap('n', "tp", "<cmd>Telescope projects<cr>", options)
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
