@@ -316,8 +316,8 @@ return packer.startup {
 
 		use {
 			"kazhala/close-buffers.nvim",
-			config = function ()
-				require("close_buffers").setup()
+			config = function()
+				require("close_buffers").setup {}
 			end
 		}
 
@@ -334,6 +334,13 @@ return packer.startup {
 			config = function() require('plugins/nvim-tree_lua') end
 		}
 
+		-- Packer
+		use {
+			"sindrets/diffview.nvim",
+			config = function()
+				require("diffview").setup( {} )
+			end
+		}
 		use {
 			'nvim-lualine/lualine.nvim',
 			requires = { 'kyazdani42/nvim-web-devicons', opt = true },

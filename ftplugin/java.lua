@@ -46,8 +46,8 @@ local config = {
   },
   handlers = {
       ["language/progressReport"] = lsp_progress.progress_report,
-        on_attach = lspconfig.on_attach,
   },
+  on_attach = lspconfig.on_attach,
   capabilities = lspconfig.capabilities,
 
   -- One dedicated LSP server & client will be started per unique root_dir
