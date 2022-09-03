@@ -314,6 +314,13 @@ return packer.startup {
 			config = function() require('plugins/nvim-bufferline_lua') end
 		}
 
+		use {
+			"kazhala/close-buffers.nvim",
+			config = function ()
+				require("close_buffers").setup()
+			end
+		}
+
 		use { -- show only cuttent tab's buffers
 			"tiagovla/scope.nvim",
 			config = function()

@@ -86,7 +86,7 @@
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 local keymap = vim.api.nvim_set_keymap
 local opts =  {noremap = true, silent = true}
-keymap('n', '<leader>c', '<cmd>bdelete %<CR>', opts)
-keymap('n', '<leader>C', '<cmd>BufferLinePickClose<CR>', opts)
+keymap('n', '<leader>c', '<cmd>BDelete this<CR>', opts)
+keymap('n', '<leader>C', '<cmd>BDelete other<CR>', opts)
 keymap('n', '<tab>', '<cmd>BufferLineCycleNext<CR>', opts)
 keymap('n', '<s-tab>', '<cmd>BufferLineCyclePrev<CR>', opts)
