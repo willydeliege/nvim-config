@@ -1,4 +1,3 @@
-
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━❰ Plugin-Independent Mapping ❱━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
@@ -17,8 +16,8 @@
 
 local keymap  = vim.api.nvim_set_keymap
 local cmd     = vim.cmd
-local options = {noremap = true, silent = true}
-local silent  = {silent = true}
+local options = { noremap = true, silent = true }
+local silent  = { silent = true }
 
 
 -- TODO: fiqure out to implement <leader>q to quit only one buffer or one window at a time
@@ -35,6 +34,12 @@ vim.api.nvim_create_autocmd(
 	}
 )
 
+-- 	{ "FileType", "BufEnter", "CursorHold", "InsertLeave" },
+-- 	{
+-- 		pattern = { "java" },
+-- 		command = "lua vim.lsp.codelens.refresh()",
+-- 	}
+-- )
 
 -- map ctl+z to nothing so that it don't suspend terminal
 vim.api.nvim_create_autocmd(
@@ -45,7 +50,7 @@ vim.api.nvim_create_autocmd(
 	}
 )
 
-keymap('n', '<C-q>','<cmd>qa <CR>', options)
+keymap('n', '<C-q>', '<cmd>qa <CR>', options)
 -- to save file
 keymap('i', '<C-s>', '<ESC>ma<ESC>:w <CR>`a', options)
 keymap('n', '<C-s>', '<ESC>ma<ESC>:w <CR>`a', options)
@@ -54,15 +59,16 @@ keymap('n', '<C-s>', '<ESC>ma<ESC>:w <CR>`a', options)
 keymap('i', '<C-e>', '<ESC><C-e>', silent)
 keymap('i', '<C-y>', '<ESC><C-y>', silent)
 
--- scroll window horizontally (scroll-horizontal)
--- < reference: https://unix.stackexchange.com/questions/110251/how-to-put-current-line-at-top-center-bottom-of-screen-in-vim
-keymap('n', '<C-h>', 'zh', silent) -- left
-keymap('n', '<C-l>', 'zl', silent) -- right
+-- switch to window
+keymap('n', '<C-h>', '<C-w>h', silent) -- left
+keymap('n', '<C-l>', '<C-w>l', silent) -- right
+keymap('n', '<C-j>', '<C-w>j', silent) -- botton
+keymap('n', '<C-k>', '<C-w>k', silent) -- top
 
 
 -- clear Search Results
 keymap('n', '??', ':noh <CR>', silent)
-
+keymap('n', '<M-f>', '<cmd>NvimTreeToggle<CR>', silent)
 
 --			Resize splits more quickly
 -- ────────────────────────────────────────────────────
@@ -93,4 +99,3 @@ keymap('v', 'K', ":m '<-2<CR>gv=gv", options)
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━❰ end of Plugin Mapping ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-

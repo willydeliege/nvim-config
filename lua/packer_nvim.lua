@@ -231,6 +231,7 @@ return packer.startup {
 				{ 'hrsh7th/cmp-buffer', after = 'nvim-cmp', commit = commits.cmp_buffer }, -- nvim-cmp source for buffer words.
 				{ 'hrsh7th/cmp-path', after = 'nvim-cmp', commit = commits.cmp_path }, -- nvim-cmp source for filesystem paths.
 				{ 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp', commit = commits.cmp_nvim_lsp_signature_help }, -- nvim-cmp source for displaying function signatures with the current parameter emphasized:
+				{ 'hrsh7th/cmp-emoji', after = 'nvim-cmp', commit = commits.cmp_emoji },
 				{ 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp', commit = commits.cmp_luasnip }, -- luasnip completion source for nvim-cmp
 			},
 			config = function()
@@ -298,6 +299,7 @@ return packer.startup {
 		use { --  Indent guides for Neovim
 			'lukas-reineke/indent-blankline.nvim',
 			commit = commits.indent_blankline_nvim,
+			after = "nvim-treesitter",
 			config = function() require('plugins/indent-blankline_nvim') end
 		}
 
@@ -331,6 +333,7 @@ return packer.startup {
 		use { -- A File Explorer For Neovim Written In Lua
 			'kyazdani42/nvim-tree.lua',
 			commit = commits.nvim_tree_lua,
+			cmd = "NvimTreeToggle",
 			config = function() require('plugins/nvim-tree_lua') end
 		}
 
@@ -338,7 +341,7 @@ return packer.startup {
 		use {
 			"sindrets/diffview.nvim",
 			config = function()
-				require("diffview").setup( {} )
+				require("diffview").setup({})
 			end
 		}
 		use {
@@ -348,6 +351,18 @@ return packer.startup {
 				require("plugins.lualine").setup()
 			end
 		}
+
+		-- using packer.nvim
+		use({
+			'jameshiew/nvim-magic',
+			config = function()
+				require('nvim-magic').setup()
+			end,
+			requires = {
+				'nvim-lua/plenary.nvim',
+				'MunifTanjim/nui.nvim'
+			}
+		})
 
 		use { -- fast and highly customizable greeter for neovim.
 			"goolord/alpha-nvim",
@@ -400,7 +415,7 @@ return packer.startup {
 		-- ━━━━━━━━━━━━━━━━━❰ DEVELOPMENT ❱━━━━━━━━━━━━━━━━━ --
 
 		use { -- java development
-			"mfussenegger/nvim-jdtls"
+			"mfussenegger/nvim-jdtls", ft = {"java"}
 		}
 
 		-- ━━━━━━━━━━━━━━❰ end of DEVELOPMENT ❱━━━━━━━━━━━━━ --

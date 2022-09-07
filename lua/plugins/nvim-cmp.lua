@@ -46,13 +46,12 @@ cmp.setup({
 	snippet = {
 		expand = function(args) luasnip.lsp_expand(args.body) end,
 	},
-
 	formatting = {
 
 		format = function(entry, vim_item)
 			-- fancy icons and a name of kind
-			local import_lspkind, lspkind = pcall(require, "lspkind")
-			if import_lspkind then
+			local lspkind_ok, lspkind = pcall(require, "lspkind")
+			if lspkind_ok then
 				vim_item.kind = lspkind.presets.default[vim_item.kind]
 			end
 
@@ -64,19 +63,20 @@ cmp.setup({
 			if truncated_label ~= label then
 				vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
 			end
-
 			-- set a name for each source
 			vim_item.menu = ({
-				buffer = "[Buff]",
 				nvim_lsp = "[LSP]",
+				nvim_lsp_signature_help = "[Signature]",
+				buffer = "[Buff]",
 				luasnip = "[LuaSnip]",
 				nvim_lua = "[Lua]",
 				latex_symbols = "[Latex]",
+				emoji = "[Emoji]",
+				path = "[Path]",
 			})[entry.source.name]
 			return vim_item
 		end,
 	},
-
 	sources = {
 		{name = 'nvim_lsp'},
 		{name = 'nvim_lsp_signature_help' },
@@ -84,6 +84,7 @@ cmp.setup({
 		{name = 'path'},
 		{name = 'luasnip'},
 		{name = 'buffer', keyword_length = 1},
+		{name = 'emoji' },
 		-- {name = 'calc'},
 	},
 

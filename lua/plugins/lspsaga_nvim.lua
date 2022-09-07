@@ -66,7 +66,7 @@ saga.init_lsp_saga({
 	-- show symbols in winbar must nightly
 	symbol_in_winbar = {
 		in_custom = false,
-		enable = false,
+		enable = true,
 		separator = ' ',
 		show_file = true,
 		click_support = false,
@@ -117,12 +117,6 @@ saga.init_lsp_saga({
 })
 
 
-local options = {noremap = true, silent = true}
-local keymap = vim.api.nvim_set_keymap
-
--- Rename
-keymap('n', '<Space>R', '<cmd>Lspsaga rename<cr>', options)
-keymap('v', '<Space>R', '<cmd>Lspsaga rename<cr>', options)
 
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
 -- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━--

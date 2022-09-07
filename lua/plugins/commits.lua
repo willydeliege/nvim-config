@@ -11,6 +11,7 @@ return {
 	cmp_nvim_lsp_signature_help = "",
 	cmp_nvim_lua = "",
 	cmp_path = "",
+	cmp_emoji = "",
 	dart_vim_plugin = "",
 	editorconfig_nvim = "",
 	feline_nvim = "",

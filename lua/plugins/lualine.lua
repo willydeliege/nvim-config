@@ -98,7 +98,7 @@ end
 
 -- Temporary disable winbar due to this issue
 -- https://github.com/neovim/neovim/issues/19458
--- local winbar = require "config.winbar"
+local winbar = require "plugins.winbar"
 
 function M.setup()
   -- local gps = require "nvim-gps"

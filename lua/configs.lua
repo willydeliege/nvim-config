@@ -79,6 +79,7 @@ opt.shiftround = true
 opt.splitbelow = true -- open horizontal splits below current window
 opt.splitright = true -- open vertical splits to the right of the current window
 opt.laststatus = 3 -- always show status line. 3 means Global Status Line
+-- opt.winbar = true
 -- opt.colorcolumn = "79", -- vertical word limit line
 opt.cmdheight = 1 -- command height
 
