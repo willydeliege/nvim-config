@@ -29,7 +29,6 @@ M.capabilities = lsp.protocol.make_client_capabilities()
 -- ━━━━━━━━━━━━━━━━━━━❰ Mappings ❱━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 local function set_lspkeymap()
-  vim.notify("keymap")
 
   local status_ok, which_key = pcall(require, "which-key")
   if not status_ok then

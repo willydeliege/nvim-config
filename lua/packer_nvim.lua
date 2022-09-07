@@ -351,7 +351,10 @@ return packer.startup {
 				require("plugins.lualine").setup()
 			end
 		}
-
+		use {
+			"SmiteshP/nvim-navic",
+			requires = "neovim/nvim-lspconfig"
+		}
 		-- using packer.nvim
 		use({
 			'jameshiew/nvim-magic',
@@ -415,7 +418,7 @@ return packer.startup {
 		-- ━━━━━━━━━━━━━━━━━❰ DEVELOPMENT ❱━━━━━━━━━━━━━━━━━ --
 
 		use { -- java development
-			"mfussenegger/nvim-jdtls", ft = {"java"}
+			"mfussenegger/nvim-jdtls", ft = { "java" }
 		}
 
 		-- ━━━━━━━━━━━━━━❰ end of DEVELOPMENT ❱━━━━━━━━━━━━━ --
