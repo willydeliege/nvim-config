@@ -17,7 +17,7 @@ local api = vim.api
 
 -- set theme
 pcall(require, 'plugins.Abstract_cs')
-
+vim.g.python3_host_prog = 'usr/bin/python3'
 opt.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
 opt.list = true -- show whitespace
 opt.listchars = {

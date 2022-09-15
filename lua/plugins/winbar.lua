@@ -3,7 +3,6 @@ local M = {}
 local colors = require "plugins.colors"
 local navic = require "nvim-navic"
 -- local utils = require "utils"
-local icons = require "plugins.icons"
 
 vim.api.nvim_set_hl(0, "WinBarSeparator", { fg = colors.grey })
 vim.api.nvim_set_hl(0, "WinBarFilename", { fg = colors.green, bg = colors.grey })
@@ -56,14 +55,14 @@ function M.get_winbar()
 
   if navic.is_available() then
     return "%#WinBarSeparator#"
-      .. "%="
-      .. ""
-      .. "%*"
-      .. get_modified()
-      .. get_location()
-      .. "%#WinBarSeparator#"
-      .. ""
-      .. "%*"
+        .. "%="
+        .. ""
+        .. "%*"
+        .. get_modified()
+        .. get_location()
+        .. "%#WinBarSeparator#"
+        .. ""
+        .. "%*"
   else
     return "%#WinBarSeparator#" .. "%=" .. "" .. "%*" .. get_modified() .. "%#WinBarSeparator#" .. "" .. "%*"
   end

@@ -85,6 +85,32 @@ return packer.startup {
 			end,
 		}
 
+		use {
+			"ellisonleao/glow.nvim",
+			config = function()
+				require("glow").setup({})
+			end
+		}
+		use { 'vimwiki/vimwiki',
+			branch = 'dev', config = function()
+				vim.g.vimwiki_list = {
+					{
+						path   = '~/vimwiki',
+						syntax = 'markdown',
+						ext    = '.md',
+					}
+				}
+				vim.g.vimwiki_ext2syntax = {
+					['.md'] = 'markdown',
+					['.markdown'] = 'markdown',
+					['.mdown'] = 'markdown',
+				}
+			end
+		}
+		use { 'blindFS/vim-taskwarrior' }
+		use {
+			"tools-life/taskwiki",
+		}
 		use { -- show startup time
 			'dstein64/vim-startuptime',
 			commit = commits.startuptime,
@@ -166,6 +192,7 @@ return packer.startup {
 		use({ -- lsp ui's
 			"glepnir/lspsaga.nvim",
 			branch = "main",
+			commit = commits.lspsaga,
 			after = "nvim-lspconfig",
 			config = function() require('plugins/lspsaga_nvim') end
 		})
@@ -418,7 +445,7 @@ return packer.startup {
 		-- ━━━━━━━━━━━━━━━━━❰ DEVELOPMENT ❱━━━━━━━━━━━━━━━━━ --
 
 		use { -- java development
-			"mfussenegger/nvim-jdtls", ft = { "java" }
+			"mfussenegger/nvim-jdtls"
 		}
 
 		-- ━━━━━━━━━━━━━━❰ end of DEVELOPMENT ❱━━━━━━━━━━━━━ --
