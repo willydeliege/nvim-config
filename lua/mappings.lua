@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd(
 	}
 )
 
-keymap('n', '<C-q>', '<cmd>qa <CR>', options)
+keymap('n', '<C-q>', '<C-w>q', options)
 -- to save file
 keymap('i', '<C-s>', '<ESC>ma<ESC>:w <CR>`a', options)
 keymap('n', '<C-s>', '<ESC>ma<ESC>:w <CR>`a', options)

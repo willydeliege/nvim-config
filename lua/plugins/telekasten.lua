@@ -1,4 +1,5 @@
-local home = vim.fn.expand("~/zettelkasten")
+---@diagnostic disable: missing-parameter
+local home = vim.fn.expand("~/willydeliege")
 -- NOTE for Windows users:
 -- - don't use Windows
 -- - try WSL2 on Windows and pretend you're on Linux
@@ -45,7 +46,7 @@ require('telekasten').setup({
     weeklies_create_nonexisting = true,
 
     -- skip telescope prompt for goto_today and goto_thisweek
-    journal_auto_open = false,
+    journal_auto_open = true,
 
     -- template for new notes (new_note, follow_link)
     -- set to `nil` or do not specify if you do not want a template

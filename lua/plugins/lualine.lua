@@ -94,14 +94,15 @@ end
 --   return table.concat(status, "  ") .. " " .. spinners[frame + 1]
 -- end
 
--- local icons = require "config.icons"
+local icons = require "plugins.icons"
 
 -- Temporary disable winbar due to this issue
 -- https://github.com/neovim/neovim/issues/19458
 local winbar = require "plugins.winbar"
-
+local function words()
+  return tostring(vim.fn.wordcount().words)
+end
 function M.setup()
-  -- local gps = require "nvim-gps"
 
   require("lualine").setup {
     options = {
@@ -118,6 +119,7 @@ function M.setup()
           "packer",
           "neogitstatus",
           "NvimTree",
+          "neo-tree",
           "Trouble",
           "alpha",
           "lir",
@@ -134,17 +136,6 @@ function M.setup()
       lualine_b = {
         "branch",
         "diff",
-        {
-          "diagnostics",
-          sources = { "nvim_diagnostic" },
-          -- symbols = {
-          --   error = icons.diagnostics.Error,
-          --   warn = icons.diagnostics.Warning,
-          --   info = icons.diagnostics.Information,
-          --   hint = icons.diagnostics.Hint,
-          -- },
-          colored = false,
-        },
       },
       lualine_c = {
         { separator },
@@ -157,7 +148,7 @@ function M.setup()
         -- },
       },
       lualine_x = { "filename", "encoding", "fileformat", "filetype" },
-      lualine_y = { "progress" },
+      lualine_y = { words},
       lualine_z = { "location" },
     },
     inactive_sections = {
@@ -171,22 +162,22 @@ function M.setup()
     tabline = {},
     -- Temporary disable winbar due to this issue
     -- https://github.com/neovim/neovim/issues/19458
-    -- winbar = {
-    --   lualine_a = { "diagnostics" },
-    --   lualine_b = {},
-    --   lualine_c = {},
-    --   lualine_x = { winbar.get_winbar },
-    --   lualine_y = {},
-    --   lualine_z = {},
-    -- },
-    -- inactive_winbar = {
-    --   lualine_a = {},
-    --   lualine_b = {},
-    --   lualine_c = {},
-    --   lualine_x = {},
-    --   lualine_y = {},
-    --   lualine_z = {},
-    -- },
+    winbar = {
+      lualine_a = { "diagnostics" },
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = { winbar.get_winbar },
+      lualine_y = {},
+      lualine_z = {},
+    },
+    inactive_winbar = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
+    },
     extensions = { "nvim-tree", "toggleterm", "quickfix" },
   }
 end

@@ -96,7 +96,7 @@ M.on_attach = function(client, bufnr)
   client.server_capabilities.documentRangeFormattingProvider = true
 
   -- Enable completion triggered by <c-x><c-o>
-
+  require("nvim-navic").attach(client,bufnr)
 
   if client.name == "jdt.ls" then
     require("jdtls").setup_dap { hotcodereplace = "auto" }
@@ -165,16 +165,6 @@ M.setup_lsp_config = function()
   api.nvim_command [[ hi DiagnosticUnderlineWarn cterm=underline  gui=underline guisp=#2f2905 ]]
   api.nvim_command [[ hi DiagnosticUnderlineInfo cterm=underline  gui=underline guisp=#265478 ]]
 
-  -- Auto-format files prior to saving them
-  -- vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-
-  --[[
-	" to change colors, it's better to define in color scheme
-	" highlight LspDiagnosticsUnderlineError         guifg=#EB4917 gui=undercurl
-	" highlight LspDiagnosticsUnderlineWarning       guifg=#EBA217 gui=undercurl
-	" highlight LspDiagnosticsUnderlineInformation   guifg=#17D6EB gui=undercurl
-	" highlight LspDiagnosticsUnderlineHint          guifg=#17EB7A gui=undercurl
-	--]]
 end
 
 
@@ -238,6 +228,9 @@ local function setup_lsp(mason_lspconfig)
     ["sumneko_lua"] = function()
       lspconfig.sumneko_lua.setup(luadev)
     end,
+    ["zk"] = function()
+      lspconfig.zk.setup{}
+    end
   })
 end
 

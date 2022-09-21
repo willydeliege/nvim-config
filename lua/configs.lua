@@ -17,7 +17,8 @@ local api = vim.api
 
 -- set theme
 pcall(require, 'plugins.Abstract_cs')
-vim.g.python3_host_prog = 'usr/bin/python3'
+vim.g.vimwiki_global_ext = 0
+-- vim.g.python3_host_prog = '/data/data/com.termux/files/usr/bin/python'
 opt.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
 opt.list = true -- show whitespace
 opt.listchars = {
@@ -32,14 +33,16 @@ opt.fillchars = {
 	diff = '∙', -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
 	eob = ' ', -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
 	fold = '·', -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-	vert = '│', -- window border when window splits vertically ─ ┴ ┬ ┤ ├ ┼
+	vert = '│', -- window border when window splits verticaly ─ ┴ ┬ ┤ ├ ┼
 }
 
--- backup related options
+-- sdf }
+
+-- backup reated options
 -- neovim backup directory
 local backup_dir = vim.fn.stdpath('data').."/.cache"
 opt.backup = true -- make backups before writing
-opt.undofile = false -- persistent undos - undo after you re-open the file
+opt.undofile = true -- persistent undos - undo after you re-open the file
 opt.writebackup = true -- Make backup before overwriting the current buffer
 opt.backupcopy = 'yes' -- Overwrite the original backup file
 opt.directory = backup_dir .. '/swap' -- directory to place swap files in

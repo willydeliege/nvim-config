@@ -30,7 +30,7 @@
             max_name_length = 18,
             max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
             tab_size = 18,
-            diagnostics = "nvim_lsp", -- false | "nvim_lsp" | "coc",
+            diagnostics = false, -- false | "nvim_lsp" | "coc",
             diagnostics_update_in_insert = false,
             -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
 ---@diagnostic disable-next-line: unused-local
@@ -59,7 +59,7 @@
             end,
             offsets = {
                 {
-                    filetype = "NvimTree",
+                    filetype = "neo-tree",
                     text = "Explorer", --| function ,
                     text_align = "center", -- "left" | "center" | "right"
                     separator = true
@@ -88,5 +88,5 @@ local keymap = vim.api.nvim_set_keymap
 local opts =  {noremap = true, silent = true}
 keymap('n', '<leader>c', '<cmd>BDelete this<CR>', opts)
 keymap('n', '<leader>C', '<cmd>BDelete other<CR>', opts)
-keymap('n', '<tab>', '<cmd>BufferLineCycleNext<CR>', opts)
-keymap('n', '<s-tab>', '<cmd>BufferLineCyclePrev<CR>', opts)
+keymap('n', ']b','<cmd>BufferLineCycleNext<CR>', opts)
+keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)

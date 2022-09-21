@@ -81,36 +81,61 @@ return packer.startup {
 			'lewis6991/impatient.nvim',
 			commit = commits.impatient_nvim,
 			config = function()
-				require("plugins.impatient_nvim")
+				require("impatient")
 			end,
+			disable = false
 		}
-
+		use {
+			"rcarriga/nvim-notify",
+			event = "BufReadPre",
+			config = function()
+				local notify = require("notify")
+				notify.setup()
+				vim.notify = notify
+			end,
+			disable = false,
+		}
 		use {
 			"ellisonleao/glow.nvim",
 			config = function()
 				require("glow").setup({})
 			end
 		}
-		use { 'vimwiki/vimwiki',
-			branch = 'dev', config = function()
-				vim.g.vimwiki_list = {
-					{
-						path   = '~/vimwiki',
-						syntax = 'markdown',
-						ext    = '.md',
-					}
-				}
-				vim.g.vimwiki_ext2syntax = {
-					['.md'] = 'markdown',
-					['.markdown'] = 'markdown',
-					['.mdown'] = 'markdown',
-				}
+		use {
+			"mickael-menu/zk-nvim",
+			config = function()
+				require("zk").setup({
+					lsp = {
+						auto_attach = {
+							filetypes = { "markdown", "vimwiki" },
+						},
+					},
+				})
 			end
 		}
-		use { 'blindFS/vim-taskwarrior' }
 		use {
-			"tools-life/taskwiki",
+			'vimwiki/vimwiki',
+			branch = 'dev',
+			config = function()
+				vim.g.vimwiki_global_ext = 0
+				vim.g.vimwiki_hl_headers = 1
+				vim.g.vimwiki_list = {
+					{
+						path = '/home/willefi/willydeliege/',
+						syntax = 'markdown',
+						ext = '.md',
+					}
+				}
+			end,
+			disable = false
 		}
+		use { 'xarthurx/taskwarrior.vim' }
+		use { "tools-life/taskwiki", disable = false }
+		use({ 'jakewvincent/mkdnflow.nvim',
+			config = function()
+				require('plugins.mkdnflow')
+			end
+		})
 		use { -- show startup time
 			'dstein64/vim-startuptime',
 			commit = commits.startuptime,
@@ -124,12 +149,10 @@ return packer.startup {
 				require("better_escape").setup()
 			end,
 		}
-
 		use {
 			"karb94/neoscroll.nvim",
 			config = function()
 				require("neoscroll").setup({
-					hide_cursor = false,
 				})
 			end
 		}
@@ -167,13 +190,6 @@ return packer.startup {
 					commit = commits.trouble_nvim,
 					after = "nvim-lspconfig",
 					config = function() require('plugins/trouble_nvim') end
-				},
-				{ -- preview native LSP's goto definition calls in floating windows.
-					'rmagatti/goto-preview',
-					commit = commits.goto_preview,
-					after = 'nvim-lspconfig',
-					keys = { 'gp' },
-					config = function() require('plugins/goto-preview') end
 				},
 			},
 			config = function()
@@ -266,15 +282,6 @@ return packer.startup {
 				require('plugins/LuaSnip')
 			end
 		}
-
-		use { --  Add/change/delete surrounding delimiter pairs with ease.
-			'kylechui/nvim-surround',
-			commit = commits.nvim_surround,
-			event = 'InsertEnter',
-			keys = { 'c' },
-			config = function() require('plugins/nvim-surround') end
-		}
-
 		use { -- Find, Filter, Preview, Pick. All lua, all the time.
 			'nvim-telescope/telescope.nvim',
 			commit = commits.telescope_nvim,
@@ -297,11 +304,8 @@ return packer.startup {
 				require("plugins/project")
 			end
 		}
-
-		use { -- Use (neo)vim terminal in the floating/popup window.
-			'voldikss/vim-floaterm',
-			commit = commits.vim_floaterm,
-			config = function() require('plugins/vim-floaterm') end
+		use {
+			"voldikss/vim-floaterm"
 		}
 
 		use { -- Maximizes and restores the current window in Vim
@@ -330,7 +334,7 @@ return packer.startup {
 			config = function() require('plugins/indent-blankline_nvim') end
 		}
 
-		use { -- Git signs written in pure lua
+		use { -- Git signs written in pure luapa
 			'lewis6991/gitsigns.nvim',
 			commit = commits.gitsigns_nvim,
 			config = function() require('plugins/gitsigns_nvim') end
@@ -357,13 +361,26 @@ return packer.startup {
 			end
 		}
 
-		use { -- A File Explorer For Neovim Written In Lua
+		--[[ use { -- A File Explorer For Neovim Written In Lua
 			'kyazdani42/nvim-tree.lua',
 			commit = commits.nvim_tree_lua,
 			cmd = "NvimTreeToggle",
-			config = function() require('plugins/nvim-tree_lua') end
-		}
+			disable = true
+		} ]]
 
+		use {
+			"nvim-neo-tree/neo-tree.nvim",
+			branch = "v2.x",
+			cmd = "Neotree",
+			config = function()
+				require('plugins.neo-tree')
+			end,
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+				"MunifTanjim/nui.nvim",
+			}
+		}
 		-- Packer
 		use {
 			"sindrets/diffview.nvim",
