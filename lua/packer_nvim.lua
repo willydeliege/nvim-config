@@ -215,6 +215,7 @@ return packer.startup {
 
 		use { -- Nvim Treesitter configurations and abstraction layer
 			'nvim-treesitter/nvim-treesitter',
+			cmd = "BufRead",
 			commit = commits.nvim_treesitter,
 			run = function() vim.cmd([[TSUpdate]]) end,
 			requires = {

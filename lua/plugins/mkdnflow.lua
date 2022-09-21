@@ -25,7 +25,7 @@ require('mkdnflow').setup({
         default_path = nil,
         find_in_root = true
     },
-    silent = true,
+    silent = false,
     links = {
         style = 'wiki',
         conceal = true,

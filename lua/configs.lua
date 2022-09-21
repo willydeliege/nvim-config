@@ -18,7 +18,7 @@ local api = vim.api
 -- set theme
 pcall(require, 'plugins.Abstract_cs')
 vim.g.vimwiki_global_ext = 0
--- vim.g.python3_host_prog = '/data/data/com.termux/files/usr/bin/python'
+vim.g.python3_host_prog = '/data/data/com.termux/files/usr/bin/python'
 opt.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
 opt.list = true -- show whitespace
 opt.listchars = {
@@ -171,7 +171,8 @@ api.nvim_create_autocmd(
 		command = "let @/ = ''",
 	}
 )
-
+-- Moved here cause of the lazy loading of neo-tree
+vim.cmd([[nnoremap \ :Neotree toggle<cr>]])
 -- ━━━━━━━━━━━━━━━━❰ end of Automate ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 
