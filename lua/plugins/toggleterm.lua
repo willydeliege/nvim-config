@@ -34,7 +34,7 @@ require("toggleterm").setup{
     winblend = 3,
   },
   winbar = {
-    enabled = true,
+    enabled = false,
     name_formatter = function(term) --  term: Terminal
       return term.name
     end
