@@ -305,9 +305,9 @@ return packer.startup {
 				require("plugins/project")
 			end
 		}
-		use {
-			"voldikss/vim-floaterm"
-		}
+		use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+			require("plugins.toggleterm")
+		end }
 
 		use { -- Maximizes and restores the current window in Vim
 			'szw/vim-maximizer',
