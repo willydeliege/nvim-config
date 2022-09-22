@@ -20,7 +20,7 @@ if not impatient_ok then
 	return
 end
 
-require('impatient').enable_profile()
+require('impatient')
 
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━ --

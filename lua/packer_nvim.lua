@@ -129,7 +129,6 @@ return packer.startup {
 			end,
 			disable = false
 		}
-		use { 'xarthurx/taskwarrior.vim' }
 		use { "tools-life/taskwiki", disable = false }
 		use({ 'jakewvincent/mkdnflow.nvim',
 			config = function()
@@ -166,7 +165,7 @@ return packer.startup {
 			commit = commits.Abstract_cs,
 		}
 
-		use { "rockyzhang24/arctic.nvim", requires = { "rktjmp/lush.nvim" } }
+		use { "tanvirtin/monokai.nvim" }
 
 		use { -- A collection of common configurations for Neovim's built-in language server client
 			'neovim/nvim-lspconfig',
@@ -300,6 +299,7 @@ return packer.startup {
 
 		use {
 			'ahmedkhalf/project.nvim',
+			event = { 'CmdlineEnter', 'CursorHold' },
 			commit = commits.project,
 			config = function()
 				require("plugins/project")
@@ -307,7 +307,9 @@ return packer.startup {
 		}
 		use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 			require("plugins.toggleterm")
-		end }
+		end,
+			cmd = {"ToggleTerm", "TermExec"}
+	}
 
 		use { -- Maximizes and restores the current window in Vim
 			'szw/vim-maximizer',
@@ -401,34 +403,10 @@ return packer.startup {
 			requires = "neovim/nvim-lspconfig"
 		}
 		-- using packer.nvim
-		use({
-			'jameshiew/nvim-magic',
-			config = function()
-				require('nvim-magic').setup()
-			end,
-			requires = {
-				'nvim-lua/plenary.nvim',
-				'MunifTanjim/nui.nvim'
-			}
-		})
-
-		use { --  smart indent and project detector with project based config loader
-			'Abstract-IDE/penvim',
-			commit = commits.penvim,
-			config = function() require('plugins/penvim') end
-		}
-
 		use { --  A simple wrapper around :mksession
 			'Shatur/neovim-session-manager',
 			commit = commits.neovim_session_manager,
 			config = function() require('plugins/neovim-session-manager') end
-		}
-
-		use { -- VS Code-like renaming UI for Neovim, writen in Lua.
-			'filipdutescu/renamer.nvim',
-			commit = commits.renamer_nvim,
-			branch = 'master',
-			config = function() require('plugins/renamer_nvim') end
 		}
 
 		use { -- EditorConfig plugin for Neovim
