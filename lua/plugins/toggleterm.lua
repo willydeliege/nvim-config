@@ -1,7 +1,7 @@
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = 20,
-  open_mapping = [[<c-T>]],
+  open_mapping = [[<M-T>]],
   -- on_open = fun(t: Terminal), -- function to run when the terminal opens
   -- on_close = fun(t: Terminal), -- function to run when the terminal closes
   -- on_stdout = fun(t: Terminal, job: number, data: string[], name: string) -- callback for processing output on stdout
@@ -27,7 +27,7 @@ require("toggleterm").setup{
     -- see :h nvim_open_win for details on borders however
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
-    border = "curved", -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+    border = "double", -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
     -- like `size`, width and height can be a number or function which is passed the current terminal
     --width = <value>,
     --height = <value>,

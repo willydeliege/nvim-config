@@ -1,4 +1,3 @@
-
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ───────────────────────────────────────────────── --
 --    Plugin:    Abstract-cs
@@ -14,14 +13,11 @@
 -- ━━━━━━━━━━━━━━━━━━━❰ configs ❱━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 
--- apply colorscheme without throwing any errors
-local apply_cs, _ = pcall(vim.cmd, 'colorscheme arctic')
-if not apply_cs then return end
-
 -- theme name
--- vim.g.abscs_theme_name = 'aqua'
-
+-- require('monokai').setup {}
+require('monokai').setup { palette = require('monokai').pro }
+-- require('monokai').setup { palette = require('monokai').soda }
+-- require('monokai').setup { palette = require('monokai').ristretto }
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-
