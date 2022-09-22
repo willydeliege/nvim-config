@@ -412,12 +412,6 @@ return packer.startup {
 			}
 		})
 
-		use { -- fast and highly customizable greeter for neovim.
-			"goolord/alpha-nvim",
-			commit = commits.alpha_nvim,
-			config = function() require('plugins/alpha-nvim') end
-		}
-
 		use { --  smart indent and project detector with project based config loader
 			'Abstract-IDE/penvim',
 			commit = commits.penvim,
