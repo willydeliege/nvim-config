@@ -214,7 +214,7 @@ return packer.startup {
 
 		use { -- Nvim Treesitter configurations and abstraction layer
 			'nvim-treesitter/nvim-treesitter',
-			cmd = "BufRead",
+			cmd = "BufReadPre",
 			commit = commits.nvim_treesitter,
 			run = function() vim.cmd([[TSUpdate]]) end,
 			requires = {
@@ -301,6 +301,7 @@ return packer.startup {
 			'ahmedkhalf/project.nvim',
 			event = { 'CmdlineEnter', 'CursorHold' },
 			commit = commits.project,
+			require = {"nvim-telescope/telescope.nvim"},
 			config = function()
 				require("plugins/project")
 			end

@@ -41,7 +41,7 @@ require('mkdnflow').setup({
         symbols = {' ', 'S', 'X'},
         update_parents = true,
         not_started = ' ',
-        in_progress = '-',
+        in_progress = 'S',
         complete = 'X'
     },
     tables = {
