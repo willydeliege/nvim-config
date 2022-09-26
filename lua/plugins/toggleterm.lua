@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 require("toggleterm").setup {
 	-- size can be a number or function which is passed the current terminal
 	size = 20,
@@ -44,7 +45,7 @@ require("toggleterm").setup {
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
 	cmd = "lazygit",
-	dir = "git_dir",
+	hidden = false,
 	direction = "float",
 	float_opts = {
 		border = "curved",
@@ -61,12 +62,12 @@ local lazygit = Terminal:new({
 })
 
 function _lazygit_toggle()
-	lazygit:toggle()
+	lazygit:open()
 end
 
 local taskwarrior = Terminal:new({
 	cmd = "taskwarrior-tui",
-	dir = "git_dir",
+	hidden = true,
 	direction = "float",
 	float_opts = {
 		border = "double",
@@ -88,7 +89,7 @@ end
 
 local journal = Terminal:new({
 	cmd = "journal",
-	dir = "git_dir",
+	-- dir = "git_dir",
 	direction = "float",
 	float_opts = {
 		border = "double",
