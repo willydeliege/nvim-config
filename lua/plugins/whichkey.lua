@@ -37,7 +37,8 @@ local mappings = {
 	},
 	w = {
 		name = "Vimwiki",
-		["<space>"] = "Diary"
+		["<space>"] = "Diary",
+		v = { "<cmd>VimwikiVSplitLink<cr>", "Open in vertical split"}
 	},
 }
 whichkey.register(mappings, opts)

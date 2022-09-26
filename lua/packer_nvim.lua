@@ -108,6 +108,7 @@ return packer.startup {
 			"mickael-menu/zk-nvim",
 			config = function()
 				require("zk").setup({
+					picker = "telescope",
 					lsp = {
 						auto_attach = {
 							filetypes = { "markdown", "vimwiki" },
@@ -453,9 +454,9 @@ return packer.startup {
 			end
 		}
 
-		use { "mrjones2015/legendary.nvim",
+		use { "mrjones2014/legendary.nvim",
 			config = function()
-				-- require("legendary").setup({})
+				require("legendary").setup({})
 			end
 		}
 
