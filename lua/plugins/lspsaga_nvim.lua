@@ -17,6 +17,7 @@ local import_saga, saga = pcall(require, 'lspsaga')
 if not import_saga then return end
 
 saga.init_lsp_saga({
+	border_style = "plus"
 })
 
 

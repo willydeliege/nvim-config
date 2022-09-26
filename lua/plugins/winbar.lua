@@ -40,6 +40,7 @@ local function get_modified()
   return "%#WinBarFilename#" .. "%t" .. "%*"
 end
 
+
 local function is_empty(s)
   return s == nil or s == ""
 end

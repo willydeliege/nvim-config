@@ -53,6 +53,10 @@ return packer.startup {
 			depth = 1, -- Git clone depth
 			clone_timeout = 600, -- Timeout, in seconds, for git clones
 		},
+		profile = {
+			enable = true,
+			threshold = 1 -- the amount in ms that a plugin's load time must be over for it to be included in the profile
+		},
 	},
 
 
@@ -87,7 +91,6 @@ return packer.startup {
 		}
 		use {
 			"rcarriga/nvim-notify",
-			event = "BufReadPre",
 			config = function()
 				local notify = require("notify")
 				notify.setup()
@@ -164,8 +167,7 @@ return packer.startup {
 			'Abstract-IDE/Abstract-cs',
 			commit = commits.Abstract_cs,
 		}
-
-		use { "tanvirtin/monokai.nvim" }
+		use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
 
 		use { -- A collection of common configurations for Neovim's built-in language server client
 			'neovim/nvim-lspconfig',
@@ -196,7 +198,24 @@ return packer.startup {
 				require('plugins/null-ls_nvim')
 			end
 		}
-		use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+		use { --  DAP, Debug Adapter Protocol client implementation for Neovim
+			'mfussenegger/nvim-dap',
+			requires = {
+				{ 'rcarriga/nvim-dap-ui' }, -- A UI for nvim-dap
+				{
+					'theHamsta/nvim-dap-virtual-text', -- This plugin adds virtual text support to nvim-dap. nvim-treesitter is used to find variable definitions.
+					requires = { 'nvim-treesitter/nvim-treesitter' },
+				},
+				{
+					'nvim-telescope/telescope-dap.nvim', --  Integration for nvim-dap with telescope.nvim
+					requires = { 'nvim-telescope/telescope.nvim' },
+				},
+			},
+			config = function()
+				require("plugins.nvim-dap").setup()
+			end
+		}
+
 		use { "folke/lua-dev.nvim" }
 		use {
 			"j-hui/fidget.nvim",
@@ -214,7 +233,6 @@ return packer.startup {
 
 		use { -- Nvim Treesitter configurations and abstraction layer
 			'nvim-treesitter/nvim-treesitter',
-			cmd = "BufReadPre",
 			commit = commits.nvim_treesitter,
 			run = function() vim.cmd([[TSUpdate]]) end,
 			requires = {
@@ -242,7 +260,7 @@ return packer.startup {
 
 				}
 			},
-			config = function() require('plugins/nvim-treesitter') end
+			config = function() require('plugins.nvim-treesitter').setup() end
 		}
 
 		use { -- A completion plugin for neovim coded in Lua.
@@ -282,6 +300,18 @@ return packer.startup {
 				require('plugins/LuaSnip')
 			end
 		}
+		use {
+			"m-demare/hlargs.nvim",
+			config = function()
+				require("plugins.hlargs")
+			end,
+		}
+		use {
+			"theHamsta/nvim-semantic-tokens",
+			config = function()
+				require("plugins.semantic").setup()
+			end,
+		}
 		use { -- Find, Filter, Preview, Pick. All lua, all the time.
 			'nvim-telescope/telescope.nvim',
 			commit = commits.telescope_nvim,
@@ -301,16 +331,16 @@ return packer.startup {
 			'ahmedkhalf/project.nvim',
 			event = { 'CmdlineEnter', 'CursorHold' },
 			commit = commits.project,
-			require = {"nvim-telescope/telescope.nvim"},
+			require = { "nvim-telescope/telescope.nvim" },
 			config = function()
 				require("plugins/project")
 			end
 		}
-		use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+		use { "akinsho/toggleterm.nvim", config = function()
 			require("plugins.toggleterm")
 		end,
-			cmd = {"ToggleTerm", "TermExec"}
-	}
+			-- module = { "toggleterm", "toggleterm.terminal" },
+		}
 
 		use { -- Maximizes and restores the current window in Vim
 			'szw/vim-maximizer',
@@ -414,16 +444,18 @@ return packer.startup {
 			'gpanders/editorconfig.nvim',
 			commit = commits.editorconfig_nvim,
 		}
-
+		-- use { "romgrk/todoist.nvim" }
 		-- Lua
 		use {
 			"folke/which-key.nvim",
 			config = function()
-				require("which-key").setup {
-					-- your configuration comes here
-					-- or leave it empty to use the default settings
-					-- refer to the configuration section below
-				}
+				require("plugins.whichkey")
+			end
+		}
+
+		use { "mrjones2015/legendary.nvim",
+			config = function()
+				-- require("legendary").setup({})
 			end
 		}
 

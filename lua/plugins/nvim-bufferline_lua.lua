@@ -84,9 +84,26 @@
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━❰ Mappings ❱━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-local keymap = vim.api.nvim_set_keymap
-local opts =  {noremap = true, silent = true}
-keymap('n', '<leader>c', '<cmd>BDelete this<CR>', opts)
-keymap('n', '<leader>C', '<cmd>BDelete other<CR>', opts)
-keymap('n', ']b','<cmd>BufferLineCycleNext<CR>', opts)
-keymap('n', '[b', '<cmd>BufferLineCyclePrev<CR>', opts)
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+local keymap = {
+    b = {
+      name = "Buffer",
+      c = { "<Cmd>BDelete this<Cr>", "Close Buffer" },
+      f = { "<Cmd>BDelete! this<Cr>", "Force Close Buffer" },
+      D = { "<Cmd>BWipeout other<Cr>", "Delete All Buffers" },
+      b = { "<Cmd>BufferLinePick<Cr>", "Pick a Buffer" },
+      P = { "<Cmd>BufferLinePickClose<Cr>", "Pick & Close a Buffer" },
+      m = { "<Cmd>Telescope buffers<Cr>", "List" },
+	  n = { "<Cmd>BufferLineCycleNext<Cr>", "Next Buffer" },
+	  p = { "<Cmd>BufferLineCyclePrev<Cr>", "Previous Buffer" }
+    },
+}
+local whichkey = require("which-key")
+whichkey.register(keymap, opts)

@@ -6,10 +6,6 @@
 -- ───────────────────────────────────────────────── --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 
-
-
-
-
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━❰ configs ❱━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
@@ -149,38 +145,4 @@ require("telescope").load_extension("projects")
 
 local keymap = vim.api.nvim_set_keymap
 local options = { silent = true, noremap = true }
-
---      --> Launch Telescope without any argument
-keymap('n', "tt",   "<cmd>lua require('telescope.builtin').builtin() <CR>", options)
-
---      --> Lists available help tags and opens a new window with the relevant help info on
-keymap('n', "th",   "<cmd>lua require('telescope.builtin').help_tags() <CR>", options)
-
---       --> show all availabe MAPPING
-keymap('n', "tm", "<cmd>lua require('telescope.builtin').keymaps() <CR>", options)
-
---       --> show buffers/opened files
--- keymap('n', "<C-b>", "<cmd>lua require('telescope.builtin').buffers() <CR>", options)
-keymap('n', "tb",  "<cmd>lua require('telescope.builtin').buffers() <CR>", options)
-
---       --> show and grep current buffer
-keymap('n', "tw", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find() <CR>", options)
-keymap('n', "tg", "<cmd>lua require('telescope.builtin').live_grep() <CR>", options)
-
---       --> Find Files
--- NOTE1: to get project root's directory, extra plugin (github.com/ygm2/rooter.nvim) is used.
--- any config related to project root is in seperate config file (lua/plugin_confs/rooter_nvim.lua)
--- to change settings related to working directory, refer to rooter_nvim.lua config file
-
--- Find files from current file's project
--- keymap('n', "<C-p>", ":Telescope find_files <cr>", options)
--- keymap('n', "tp",    ":Telescope find_files <cr>", options)
--- show all files from current working directory
--- keymap('n', "<C-f>", "<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') }) <CR>", options)
-keymap('n', "tf",    "<cmd>lua require('telescope.builtin').find_files() <CR>", options)
-keymap('n', "tr",    "<cmd>lua require('telescope.builtin').oldfiles() <CR>", options)
-keymap('n', "tp", "<cmd>Telescope projects<cr>", options)
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 

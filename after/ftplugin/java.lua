@@ -31,16 +31,15 @@ local bundles = {
     home .. "/.config/nvim/jars/java-debug/com.microsoft.java.debug.plugin-*.jar"
   ),
 }
-
 vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/jars/vscode-java-test/server/*.jar"), "\n"))
 local lsp_progress = require("plugins.lsp.jdtls_progress")
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-  cmd = { "jdtls",
+  cmd = { "/home/willefi/repos/jdtls/bin/jdtls",
     "-configuration",
-    "/home/willefi/.install/config_linux/",
+    "/home/willefi/repos/jdtls/config_linux/",
     "-data",
     workspace_dir
   },

@@ -107,11 +107,11 @@ function M.setup()
   require("lualine").setup {
     options = {
       icons_enabled = true,
-      theme = "auto",
+      theme = "nightfox",
       component_separators = { left = "", right = "" },
       section_separators = { left = " ", right = "" },
       disabled_filetypes = {
-        statusline = {},
+        statusline = {"neo-tree"},
         winbar = {
           "help",
           "startify",
@@ -159,7 +159,8 @@ function M.setup()
       lualine_y = {},
       lualine_z = {},
     },
-    tabline = {},
+    tabline = {
+	},
     -- Temporary disable winbar due to this issue
     -- https://github.com/neovim/neovim/issues/19458
     winbar = {

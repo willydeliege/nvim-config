@@ -69,7 +69,7 @@ opt.sidescrolloff = 2 -- keep 30 columns visible left and right of the cursor at
 opt.backspace = 'indent,start,eol' -- make backspace behave like normal again
 -- opt.mouse = "a" -- turn on mouse interaction
 opt.updatetime = 500 -- CursorHold interval
-
+opt.updatecount = 0 -- disable swp file
 opt.softtabstop = 4
 opt.shiftwidth = 4 -- spaces per tab (when shifting), when using the >> or << commands, shift lines by 4 spaces
 opt.tabstop = 4 -- spaces per tab
@@ -84,7 +84,7 @@ opt.splitright = true -- open vertical splits to the right of the current window
 opt.laststatus = 3 -- always show status line. 3 means Global Status Line
 -- opt.winbar = true
 -- opt.colorcolumn = "79", -- vertical word limit line
-opt.cmdheight = 1 -- command height
+opt.cmdheight = 1 -- command heightconf
 
 opt.hidden = true -- allows you to hide buffers with unsaved changes without being prompted
 opt.inccommand = 'split' -- live preview of :s results
@@ -172,6 +172,7 @@ api.nvim_create_autocmd(
 	}
 )
 -- Moved here cause of the lazy loading of neo-tree
+
 vim.cmd([[nnoremap \ :Neotree toggle<cr>]])
 -- ━━━━━━━━━━━━━━━━❰ end of Automate ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --

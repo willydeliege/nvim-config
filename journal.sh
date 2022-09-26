@@ -1,0 +1,11 @@
+#!/bin/bash
+noteFileName="$HOME/willydeliege/diary/$(date +%Y-%m-%d).md"
+
+	if [[ ! -f $noteFileName ]]; then
+		echo "# Note for $(date +%Y-%m-%d)" >> $noteFileName
+	fi
+
+nvim --noplugin -c "norm Go" \
+	-c "norm i* $(date +%H:%M) " \
+	-c "startinsert" $noteFileName
+

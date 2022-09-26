@@ -14,15 +14,15 @@
 --]===]
 
 
-local keymap  = vim.api.nvim_set_keymap
-local cmd     = vim.cmd
-local options = { noremap = true, silent = true }
-local silent  = { silent = true }
-
+local keymap    = vim.api.nvim_set_keymap
+local cmd       = vim.cmd
+local options   = { noremap = true, silent = true }
+local silent    = { silent = true }
+local remove_km = vim.api.nvim_del_keymap
 
 -- TODO: fiqure out to implement <leader>q to quit only one buffer or one window at a time
 -- Close buffer
-cmd([[ autocmd BufEnter * nmap <silent> <buffer> <leader>q :bd<CR> ]])
+-- cmd([[ autocmd BufEnter * nmap <silent> <buffer> <leader>q :bd<CR> ]])
 
 vim.api.nvim_create_autocmd(
 	"FileType",
@@ -33,14 +33,6 @@ vim.api.nvim_create_autocmd(
 		command = "nnoremap <silent> <buffer> <leader>q :close<CR>",
 	}
 )
-
--- 	{ "FileType", "BufEnter", "CursorHold", "InsertLeave" },
--- 	{
--- 		pattern = { "java" },
--- 		command = "lua vim.lsp.codelens.refresh()",
--- 	}
--- )
-
 -- map ctl+z to nothing so that it don't suspend terminal
 vim.api.nvim_create_autocmd(
 	"BufEnter",
@@ -49,7 +41,7 @@ vim.api.nvim_create_autocmd(
 		command = "nnoremap <c-z> <nop>"
 	}
 )
-
+-- close window
 keymap('n', '<C-q>', '<C-w>q', options)
 -- to save file
 keymap('i', '<C-s>', '<ESC>ma<ESC>:w <CR>`a', options)
@@ -68,16 +60,15 @@ keymap('n', '<C-k>', '<C-w>k', silent) -- top
 
 -- clear Search Results
 keymap('n', '??', ':noh <CR>', silent)
-keymap('n', '<M-f>', '<cmd>NvimTreeToggle<CR>', silent)
 
 --			Resize splits more quickly
 -- ────────────────────────────────────────────────────
 -- resize up and down
-keymap('n', ';k', ':resize +3 <CR>', options)
-keymap('n', ';j', ':resize -3 <CR>', options)
+keymap('n', '<A-up>', ':resize +3 <CR>', options)
+keymap('n', '<A-down>', ':resize -3 <CR>', options)
 -- resize right and left
-keymap('n', ';l', ':vertical resize +3 <CR>', options)
-keymap('n', ';h', ':vertical resize -3 <CR>', options)
+keymap('n', '<A-left>', ':vertical resize +3 <CR>', options)
+keymap('n', '<A-right>', ':vertical resize -3 <CR>', options)
 -- ────────────────────────────────────────────────────
 
 --[[

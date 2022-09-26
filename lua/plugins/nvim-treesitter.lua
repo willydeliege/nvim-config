@@ -1,94 +1,172 @@
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
--- ───────────────────────────────────────────────── --
---   Plugin:    nvim-treesitter
---   Github:    github.com/nvim-treesitter/nvim-treesitter
--- ───────────────────────────────────────────────── --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
+local M = {}
 
+function M.setup()
+  local swap_next, swap_prev = (function()
+    local swap_objects = {
+      p = "@parameter.inner",
+      f = "@function.outer",
+      c = "@class.outer",
+    }
 
+    local n, p = {}, {}
+    for key, obj in pairs(swap_objects) do
+      n[string.format("<Leader>cx%s", key)] = obj
+      p[string.format("<Leader>cX%s", key)] = obj
+    end
 
+    return n, p
+  end)()
 
+  require("nvim-treesitter.configs").setup {
+    -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "all",
+    ignore_install = { "phpdoc" },
 
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━❰ configs ❱━━━━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
+    -- Install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,
 
--- safely import tree-sitter
-local treesitter_imported_ok, treesitter = pcall(require, 'nvim-treesitter.configs')
-if not treesitter_imported_ok then return end
+    highlight = {
+      -- `false` will disable the whole extension
+      enable = true,
+    },
 
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = nil,
+    },
 
-local import_parsers, parsers = pcall(require, 'nvim-treesitter.parsers')
-if import_parsers then
-	local parsername = parsers.filetype_to_parsername
-	parsername.htmldjango = 'html' -- enable html parser in htmldjango file
-	parsername.zsh = 'bash' -- enable bash parser in zsh file
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "grn",
+        scope_incremental = "grc",
+        node_decremental = "grm",
+      },
+    },
+
+    indent = { enable = true, disable = { "python", "rust", } },
+
+    -- vim-matchup
+    matchup = {
+      enable = true,
+    },
+
+    -- nvim-treesitter-textsubjects
+    textsubjects = {
+      enable = true,
+      prev_selection = ",", -- (Optional) keymap to select the previous selection
+      keymaps = {
+        ["."] = "textsubjects-smart",
+        [";"] = "textsubjects-container-outer",
+        ["i;"] = "textsubjects-container-inner",
+      },
+    },
+
+    -- nvim-treesitter-textobjects
+    textobjects = {
+      select = {
+        enable = true,
+
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+        },
+        selection_modes = {
+          ["@parameter.outer"] = "v", -- charwise
+          ["@function.outer"] = "V", -- linewise
+          ["@class.outer"] = "<c-v>", -- blockwise
+        },
+      },
+
+      swap = {
+        enable = true,
+        swap_next = swap_next,
+        swap_previous = swap_prev,
+        -- swap_next = {
+        --   ["<leader>cx"] = "@parameter.inner",
+        -- },
+        -- swap_previous = {
+        --   ["<leader>cX"] = "@parameter.inner",
+        -- },
+      },
+
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
+        },
+      },
+
+      -- lsp_interop = {
+      --   enable = true,
+      --   border = "none",
+      --   peek_definition_code = {
+      --     ["<leader>cf"] = "@function.outer",
+      --     ["<leader>cF"] = "@class.outer",
+      --   },
+      -- },
+    },
+
+    -- endwise
+    endwise = {
+      enable = true,
+    },
+
+    -- autotag
+    autotag = {
+      enable = true,
+    },
+
+    -- context_commentstring
+    context_commentstring = {
+      enable = true,
+      --enable_autocmd = false,
+    },
+
+    -- indent
+    -- yati = { enable = true },
+
+    playground = {
+      enable = true,
+      disable = {},
+      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+      persist_queries = false, -- Whether the query persists across vim sessions
+    },
+
+    query_linter = {
+      enable = true,
+      use_virtual_text = true,
+      lint_events = { "BufWrite", "CursorHold" },
+    },
+
+    -- markid
+    -- markid = { enable = true },
+  }
+  -- require("treesitter-context").setup {
+  --   enable = true,
+  -- }
 end
 
-
-treesitter.setup {
-
-	-- ensure_installed  = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-	-- ignore_install    = { "javascript" }, -- List of parsers to ignore installing
-
-	highlight = {
-		enable = true, -- {"c", "cpp", "dart", "python", "javascript"}, enable = true (false will disable the whole extension)
-		-- disable lighlight if file is too long
-		disable = function() -- Disable in large C++ buffers
-			-- disable highlight if file has > 6000 LOC
-			return vim.api.nvim_buf_line_count(0) > 6000
-			-- return lang == "cpp" and vim.api.nvim_buf_line_count(bufnr) > 50000
-		end,
-		-- disable = { "c", "rust" },  -- list of language that will be disabled
-		custom_captures = {
-			-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-			["foo.bar"] = "Identifier"
-		},
-		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-		-- Using this option may slow down your editor, and you may see some duplicate highlights.
-		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = true,
-	},
-	rainbow = {
-		enable = true,
-		-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-		max_file_lines = nil, -- Do not enable for files with more than n lines, int
-		-- colors = {}, -- table of hex strings
-		-- termcolors = {} -- table of colour name strings
-	},
-	playground = {
-		enable = true,
-		disable = {},
-		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-		persist_queries = false, -- Whether the query persists across vim sessions
-
-		-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-		-- ━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━ --
-		-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-
-
-
-
-		-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-		-- ━━━━━━━━━━━━━━━━━━━❰ Mappings ❱━━━━━━━━━━━━━━━━━━ --
-		-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-		-- keybindings = {
-		--     toggle_query_editor = 'o',
-		--     toggle_hl_groups = 'i',
-		--     toggle_injected_languages = 't',
-		--     toggle_anonymous_nodes = 'a',
-		--     toggle_language_display = 'I',
-		--     focus_language = 'f',
-		--     unfocus_language = 'F',
-		--     update = 'R',
-		--     goto_node = '<cr>',
-		--     show_help = '?'
-		-- }
-	},
-}
-
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
+return M
