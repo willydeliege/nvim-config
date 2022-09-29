@@ -133,6 +133,7 @@ return packer.startup {
 			end,
 			disable = false
 		}
+		use { "mattn/calendar-vim" }
 		use { "tools-life/taskwiki", disable = false }
 		use({ 'jakewvincent/mkdnflow.nvim',
 			config = function()

@@ -20,6 +20,7 @@ local mappings = {
 		F = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
 	},
 	j = { "<cmd>lua _journal_toggle()<CR>", "Journal" },
+	c = { "<cmd>MkdnEnter<cr>", "Create/follow link" },
 	e = { "<cmd>Neotree toggle<cr>", "Explorer" },
 	f = {
 		name = "Find",
@@ -38,7 +39,8 @@ local mappings = {
 	w = {
 		name = "Vimwiki",
 		["<space>"] = "Diary",
-		v = { "<cmd>VimwikiVSplitLink<cr>", "Open in vertical split"}
+		v = { "<cmd>VimwikiVSplitLink<cr>", "Open in vertical split"},
+		u = { "<cmd>VimwikiSplitLink<cr>", "Open in horizontal split"}
 	},
 }
 whichkey.register(mappings, opts)

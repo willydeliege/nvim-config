@@ -20,7 +20,7 @@ require('mkdnflow').setup({
 		root_tell = 'index.md',
 		nvim_wd_heel = true
 	},
-	wrap = false,
+	wrap = true,
 	bib = {
 		default_path = nil,
 		find_in_root = true
@@ -57,7 +57,7 @@ require('mkdnflow').setup({
 		auto_extend_cols = false
 	},
 	mappings = {
-		MkdnEnter = { 'n', '<CR>' },
+		MkdnEnter = { { 'n', 'v' }, '<CR>' },
 		MkdnTab = false,
 		MkdnSTab = false,
 		MkdnNextLink = { 'n', '<Tab>' },

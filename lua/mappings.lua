@@ -41,6 +41,8 @@ vim.api.nvim_create_autocmd(
 		command = "nnoremap <c-z> <nop>"
 	}
 )
+-- assign jk so that it's easier in --noplugin mode
+keymap("n","jk","<ESC>",options)
 -- close window
 keymap('n', '<C-q>', '<C-w>q', options)
 -- to save file
