@@ -1,5 +1,3 @@
-
-
 local whichkey = require("which-key")
 
 whichkey.setup()
@@ -29,8 +27,3 @@ local mappings = {
 	},
 }
 whichkey.register(mappings, opts)
-
--- local keymap    = vim.api.nvim_set_keymap
--- local options   = { noremap = true, silent = true }
--- keymap('n', '<cr>', ":MkdnEnter", options)
-
