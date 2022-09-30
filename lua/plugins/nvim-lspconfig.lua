@@ -76,8 +76,9 @@ local function set_lspkeymap()
 	local vmappings = {
 		l = {
 			name = "LSP",
-			a = { "<cmd>Lspsaga range_code_action<cr>", "Code Action" },
-			f = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Format selection" },
+			a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+			f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format selection" },
+
 
 		},
 	}

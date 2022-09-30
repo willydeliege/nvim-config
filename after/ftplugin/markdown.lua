@@ -15,7 +15,8 @@ local mappings = {
 		name = "TaskWiki",
 		b = { name = "Burndow" },
 		h = { name = "History" },
-		g = { name = "GHistory" }
+		G = { name = "GHistory" },
+		c = { name = "Choose" }
 
 	},
 	z = {

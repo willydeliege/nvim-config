@@ -1,4 +1,3 @@
-
 return {
 	Abstract_cs = "",
 	Comment_nvim = "",

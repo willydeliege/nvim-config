@@ -107,14 +107,7 @@ return packer.startup {
 		use {
 			"mickael-menu/zk-nvim",
 			config = function()
-				require("zk").setup({
-					picker = "telescope",
-					lsp = {
-						auto_attach = {
-							filetypes = { "markdown", "vimwiki" },
-						},
-					},
-				})
+				require("plugins.zk-nvim")
 			end
 		}
 		use {
@@ -165,11 +158,19 @@ return packer.startup {
 			'nathom/filetype.nvim',
 			commit = commits.filetype_nvim,
 		}
-		use { -- colorscheme for (neo)vim written in lua specially made for Abstract
-			'Abstract-IDE/Abstract-cs',
-			commit = commits.Abstract_cs,
+		-- If you are using Pecker
+		use { 'marko-cerovac/material.nvim',
+			config = function()
+				require("material").setup({
+					high_visibility = {
+						darker = true -- Enable higher contrast text for darker style
+					},
+					lualine_style = "stealth"
+				})
+			end
 		}
-		use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
+
+		use { "RRethy/vim-illuminate" }
 
 		use { -- A collection of common configurations for Neovim's built-in language server client
 			'neovim/nvim-lspconfig',

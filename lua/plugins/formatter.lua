@@ -1,4 +1,3 @@
-
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ───────────────────────────────────────────────── --
 --   Plugin:    formatter.nvim
@@ -49,14 +48,14 @@ require('formatter').setup({
 		},
 
 		-- Python
-		python = {function() return {exe = "yapf", stdin = true} end},
+		python = { function() return { exe = "yapf", stdin = true } end },
 
 		-- Javascript
 		javascript = {
 			function()
 				return {
 					exe = "js-beautify",
-					args = {'--indent-size 4', '--max-preserve-newlines 3'},
+					args = { '--indent-size 4', '--max-preserve-newlines 3' },
 					stdin = true
 				}
 			end
@@ -67,7 +66,7 @@ require('formatter').setup({
 			function()
 				return {
 					exe = "lua-format",
-					args = {'--indent-width 1', '--tab-width 4', '--use-tab'},
+					args = { '--indent-width 1', '--tab-width 4', '--use-tab' },
 					stdin = true
 				}
 			end
@@ -104,4 +103,3 @@ require('formatter').setup({
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-

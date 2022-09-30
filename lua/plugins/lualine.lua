@@ -1,74 +1,73 @@
-
 local M = {}
 
 -- Color table for highlights
 local colors = {
-  bg = "#202328",
-  fg = "#bbc2cf",
-  yellow = "#ECBE7B",
-  cyan = "#008080",
-  darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
+	bg = "#202328",
+	fg = "#bbc2cf",
+	yellow = "#ECBE7B",
+	cyan = "#008080",
+	darkblue = "#081633",
+	green = "#98be65",
+	orange = "#FF8800",
+	violet = "#a9a1e1",
+	magenta = "#c678dd",
+	blue = "#51afef",
+	red = "#ec5f67",
 }
 
 local function separator()
-  return "%="
+	return "%="
 end
 
 local function lsp_client(msg)
-  msg = msg or ""
-  local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })-- { bufnr = 0 }
-  if next(buf_clients) == nil then
-    if type(msg) == "boolean" or #msg == 0 then
-      return ""
-    end
-    return msg
-  end
-  local buf_ft = vim.bo.filetype
-  local buf_client_names = {}
+	msg = msg or ""
+	local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 }) -- { bufnr = 0 }
+	if next(buf_clients) == nil then
+		if type(msg) == "boolean" or #msg == 0 then
+			return ""
+		end
+		return msg
+	end
+	local buf_ft = vim.bo.filetype
+	local buf_client_names = {}
 
-  -- add client
-  for _, client in pairs(buf_clients) do
-    if client.name ~= "null-ls" then
-      table.insert(buf_client_names, client.name)
-    end
-  end
+	-- add client
+	for _, client in pairs(buf_clients) do
+		if client.name ~= "null-ls" then
+			table.insert(buf_client_names, client.name)
+		end
+	end
 
-  -- add formatter
-  -- local formatters = require "config.lsp.null-ls.formatters"
-  -- local supported_formatters = formatters.list_registered(buf_ft)
-  -- vim.list_extend(buf_client_names, supported_formatters)
-  --
-  -- -- add linter
-  -- local linters = require "config.lsp.null-ls.linters"
-  -- local supported_linters = linters.list_registered(buf_ft)
-  -- vim.list_extend(buf_client_names, supported_linters)
-  --
-  -- -- add hover
-  -- local hovers = require "config.lsp.null-ls.hovers"
-  -- local supported_hovers = hovers.list_registered(buf_ft)
-  -- vim.list_extend(buf_client_names, supported_hovers)
-  --
-  -- -- add code action
-  -- local code_actions = require "config.lsp.null-ls.code_actions"
-  -- local supported_code_actions = code_actions.list_registered(buf_ft)
-  -- vim.list_extend(buf_client_names, supported_code_actions)
-  --
-  local hash = {}
-  local client_names = {}
-  for _, v in ipairs(buf_client_names) do
-    if not hash[v] then
-      client_names[#client_names + 1] = v
-      hash[v] = true
-    end
-  end
-  table.sort(client_names)
-  return "[" .. table.concat(client_names, ", ") .. "]"
+	-- add formatter
+	-- local formatters = require "config.lsp.null-ls.formatters"
+	-- local supported_formatters = formatters.list_registered(buf_ft)
+	-- vim.list_extend(buf_client_names, supported_formatters)
+	--
+	-- -- add linter
+	-- local linters = require "config.lsp.null-ls.linters"
+	-- local supported_linters = linters.list_registered(buf_ft)
+	-- vim.list_extend(buf_client_names, supported_linters)
+	--
+	-- -- add hover
+	-- local hovers = require "config.lsp.null-ls.hovers"
+	-- local supported_hovers = hovers.list_registered(buf_ft)
+	-- vim.list_extend(buf_client_names, supported_hovers)
+	--
+	-- -- add code action
+	-- local code_actions = require "config.lsp.null-ls.code_actions"
+	-- local supported_code_actions = code_actions.list_registered(buf_ft)
+	-- vim.list_extend(buf_client_names, supported_code_actions)
+	--
+	local hash = {}
+	local client_names = {}
+	for _, v in ipairs(buf_client_names) do
+		if not hash[v] then
+			client_names[#client_names + 1] = v
+			hash[v] = true
+		end
+	end
+	table.sort(client_names)
+	return "[" .. table.concat(client_names, ", ") .. "]"
 end
 
 -------- use fidget.nvim ------
@@ -100,87 +99,88 @@ local icons = require "plugins.icons"
 -- https://github.com/neovim/neovim/issues/19458
 local winbar = require "plugins.winbar"
 local function words()
-  return tostring(vim.fn.wordcount().words)
+	return tostring(vim.fn.wordcount().words)
 end
+
 function M.setup()
 
-  require("lualine").setup {
-    options = {
-      icons_enabled = true,
-      theme = "nightfox",
-      component_separators = { left = "", right = "" },
-      section_separators = { left = " ", right = "" },
-      disabled_filetypes = {
-        statusline = {"neo-tree"},
-        winbar = {
-          "help",
-          "startify",
-          "dashboard",
-          "packer",
-          "neogitstatus",
-          "NvimTree",
-          "neo-tree",
-          "Trouble",
-          "alpha",
-          "lir",
-          "Outline",
-          "spectre_panel",
-          "toggleterm",
-        },
-      },
-      always_divide_middle = true,
-      globalstatus = true,
-    },
-    sections = {
-      lualine_a = { "mode" },
-      lualine_b = {
-        "branch",
-        "diff",
-      },
-      lualine_c = {
-        { separator },
-        { lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },
-        -- { lsp_progress },
-        -- {
-        --   gps.get_location,
-        --   cond = gps.is_available,
-        --   color = { fg = colors.green },
-        -- },
-      },
-      lualine_x = { "filename", "encoding", "fileformat", "filetype" },
-      lualine_y = { words},
-      lualine_z = { "location" },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
-      lualine_y = {},
-      lualine_z = {},
-    },
-    tabline = {
-	},
-    -- Temporary disable winbar due to this issue
-    -- https://github.com/neovim/neovim/issues/19458
-    winbar = {
-      lualine_a = { "diagnostics" },
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = { winbar.get_winbar },
-      lualine_y = {},
-      lualine_z = {},
-    },
-    inactive_winbar = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
-    },
-    extensions = { "nvim-tree", "toggleterm", "quickfix" },
-  }
+	require("lualine").setup {
+		options = {
+			icons_enabled = true,
+			theme = "material",
+			component_separators = { left = "", right = "" },
+			section_separators = { left = " ", right = "" },
+			disabled_filetypes = {
+				statusline = { "neo-tree" },
+				winbar = {
+					"help",
+					"startify",
+					"dashboard",
+					"packer",
+					"neogitstatus",
+					"NvimTree",
+					"neo-tree",
+					"Trouble",
+					"alpha",
+					"lir",
+					"Outline",
+					"spectre_panel",
+					"toggleterm",
+				},
+			},
+			always_divide_middle = true,
+			globalstatus = true,
+		},
+		sections = {
+			lualine_a = { "mode" },
+			lualine_b = {
+				"branch",
+				"diff",
+			},
+			lualine_c = {
+				{ separator },
+				{ lsp_client, icon = " ", color = { fg = colors.violet, gui = "bold" } },
+				-- { lsp_progress },
+				-- {
+				--   gps.get_location,
+				--   cond = gps.is_available,
+				--   color = { fg = colors.green },
+				-- },
+			},
+			lualine_x = { "filename", "encoding", "fileformat", "filetype" },
+			lualine_y = { words },
+			lualine_z = { "location" },
+		},
+		inactive_sections = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = { "filename" },
+			lualine_x = { "location" },
+			lualine_y = {},
+			lualine_z = {},
+		},
+		tabline = {
+		},
+		-- Temporary disable winbar due to this issue
+		-- https://github.com/neovim/neovim/issues/19458
+		winbar = {
+			lualine_a = { "diagnostics" },
+			lualine_b = {},
+			lualine_c = {},
+			lualine_x = { winbar.get_winbar },
+			lualine_y = {},
+			lualine_z = {},
+		},
+		inactive_winbar = {
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = {},
+			lualine_x = {},
+			lualine_y = {},
+			lualine_z = {},
+		},
+		extensions = { "nvim-tree", "toggleterm", "quickfix" },
+	}
 end
 
 return M

@@ -17,9 +17,9 @@
    file to change any setting related to LSP
    we aren't going to use lua/plugin_confs/lspinstall.lua
    file or if you prefer anyway, commentout dupilcate codes
-   for lspconfig.lua file]]--
+   for lspconfig.lua file]] --
 
-require'lspinstall'.setup()
+require 'lspinstall'.setup()
 --[[
 require'lspinstall'.setup() -- important
 
@@ -32,4 +32,3 @@ end
 --━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
 --━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━--
 --━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━--
-
