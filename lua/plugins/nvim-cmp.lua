@@ -1,4 +1,3 @@
-
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ───────────────────────────────────────────────── --
 --   Plugin:    nvim-cmp
@@ -78,22 +77,22 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{name = 'nvim_lsp'},
-		{name = 'nvim_lsp_signature_help' },
-		{name = 'nvim_lua'},
-		{name = 'path'},
-		{name = 'luasnip'},
-		{name = 'buffer', keyword_length = 1},
-		{name = 'emoji' },
+		{ name = 'nvim_lsp' },
+		{ name = 'nvim_lsp_signature_help' },
+		{ name = 'nvim_lua' },
+		{ name = 'path' },
+		{ name = 'luasnip' },
+		{ name = 'buffer', keyword_length = 1 },
+		{ name = 'emoji' },
 		-- {name = 'calc'},
 	},
 
 	window = {
 		documentation = {
-			border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"},
+			border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 		},
 		completion = {
-			border = {"┌", "─", "┐", "│", "┘", "─", "└", "│"},
+			border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 		}
 	},
 
@@ -145,7 +144,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, {"i", "s"}),
+		end, { "i", "s" }),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -155,7 +154,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, {"i", "s"}),
+		end, { "i", "s" }),
 
 	},
 })
@@ -163,4 +162,3 @@ cmp.setup({
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end Mappings ❱━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-
