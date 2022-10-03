@@ -20,6 +20,7 @@ require('mappings') -- plugin independent mappings
 -- loading plugins and its configs are managed in seperate config file, ~/.config/nvim/lua/plugins/packer_nvim.lua
 -- NOTE: alaways load plugins at last
 require('packer_nvim')
-
+-- TODO
+-- INFO
+-- FIXME :h
 -- ━━━━━━━━━━━━━━━━━❰ end of Load ❱━━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --

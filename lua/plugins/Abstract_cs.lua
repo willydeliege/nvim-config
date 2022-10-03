@@ -4,8 +4,14 @@
 --    Github:    github.com/Abstract-IDE/Abstract-cs
 -- ───────────────────────────────────────────────── --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-vim.g.material_style = "deep ocean"
-vim.cmd("colorscheme material")
+require("tokyonight").setup({
+	styles = {
+		-- Style to be applied to different syntax groups
+		-- Value is any valid attr-list value for `:help nvim_set_hl`
+		comments = { italic = false },
+	}
+})
+vim.cmd("colorscheme tokyonight")
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━❰ end configs ❱━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --

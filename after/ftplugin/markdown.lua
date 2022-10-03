@@ -1,3 +1,4 @@
+vim.g.taskwiki_suppress_mappings="yes"
 local whichkey = require("which-key")
 
 whichkey.setup()

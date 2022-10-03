@@ -5,7 +5,7 @@ require('mkdnflow').setup({
 		buffers = true,
 		conceal = true,
 		cursor = true,
-		folds = true,
+		folds = false,
 		links = true,
 		lists = true,
 		maps = true,
@@ -44,7 +44,7 @@ require('mkdnflow').setup({
 		end
 	},
 	to_do = {
-		symbols = { ' ', 'S', 'X' },
+		symbols = { ' ', 'S', 'W', 'X' },
 		update_parents = true,
 		not_started = ' ',
 		in_progress = 'S',
@@ -74,7 +74,7 @@ require('mkdnflow').setup({
 		MkdnYankFileAnchorLink = { 'n', 'yfa' },
 		MkdnIncreaseHeading = { 'n', '+' },
 		MkdnDecreaseHeading = { 'n', '-' },
-		MkdnToggleToDo = false,
+		MkdnToggleToDo = { "n", "<c-space>" },
 		MkdnNewListItem = { 'i', '<CR>' },
 		MkdnNewListItemBelowInsert = { 'n', 'o' },
 		MkdnNewListItemAboveInsert = { 'n', 'O' },

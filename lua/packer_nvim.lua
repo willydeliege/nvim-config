@@ -110,29 +110,14 @@ return packer.startup {
 				require("plugins.zk-nvim")
 			end
 		}
-		use {
-			'vimwiki/vimwiki',
-			branch = 'dev',
-			config = function()
-				vim.g.vimwiki_global_ext = 0
-				vim.g.vimwiki_hl_headers = 1
-				vim.g.vimwiki_list = {
-					{
-						path = '/home/willefi/willydeliege/',
-						syntax = 'markdown',
-						ext = '.md',
-					}
-				}
-			end,
-			disable = false
-		}
 		use { "mattn/calendar-vim" }
 		use { "tools-life/taskwiki", disable = false }
-		use({ 'jakewvincent/mkdnflow.nvim',
+		use { "xarthurx/taskwarrior.vim" }
+		use { 'jakewvincent/mkdnflow.nvim',
 			config = function()
 				require('plugins.mkdnflow')
-			end
-		})
+			end,
+			disable = false }
 		use { -- show startup time
 			'dstein64/vim-startuptime',
 			commit = commits.startuptime,
@@ -159,6 +144,7 @@ return packer.startup {
 			commit = commits.filetype_nvim,
 		}
 		-- If you are using Pecker
+		use { 'folke/tokyonight.nvim' }
 		use { 'marko-cerovac/material.nvim',
 			config = function()
 				require("material").setup({
@@ -226,14 +212,18 @@ return packer.startup {
 				require("plugins.fidget_nivm")
 			end
 		}
-		use({ -- lsp ui's
+		use {
+			'stevearc/aerial.nvim',
+			config = function() require('aerial').setup() end
+		}
+		--[[ use({ -- lsp ui's
 			"glepnir/lspsaga.nvim",
 			branch = "main",
 			commit = commits.lspsaga,
 			after = "nvim-lspconfig",
 			config = function() require('plugins/lspsaga_nvim') end
 		})
-
+]]
 		use { -- Nvim Treesitter configurations and abstraction layer
 			'nvim-treesitter/nvim-treesitter',
 			commit = commits.nvim_treesitter,
@@ -265,7 +255,6 @@ return packer.startup {
 			},
 			config = function() require('plugins.nvim-treesitter').setup() end
 		}
-
 		use { -- A completion plugin for neovim coded in Lua.
 			'hrsh7th/nvim-cmp',
 			commit = commits.nvim_cmp,

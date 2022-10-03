@@ -20,7 +20,7 @@ local mappings = {
 		F = { "<cmd>ToggleTerm direction=float<CR>", "Float" },
 	},
 	j = { "<cmd>lua _journal_toggle()<CR>", "Journal" },
-	c = { "<cmd>MkdnEnter<cr>", "Create/follow link" },
+	-- c = { "<cmd>MkdnEnter<cr>", "Create/follow link" },
 	e = { "<cmd>Neotree toggle<cr>", "Explorer" },
 	f = {
 		name = "Find",
@@ -35,12 +35,6 @@ local mappings = {
 		r = { "<cmd>lua require'telescope'.extensions.file_browser.file_browser()<cr>", "File Browser" },
 		w = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" },
 		p = { "<cmd>Telescope projects<cr>", "Projects" },
-	},
-	w = {
-		name = "Vimwiki",
-		["<space>"] = "Diary",
-		v = { "<cmd>VimwikiVSplitLink<cr>", "Open in vertical split" },
-		u = { "<cmd>VimwikiSplitLink<cr>", "Open in horizontal split" }
 	},
 }
 whichkey.register(mappings, opts)

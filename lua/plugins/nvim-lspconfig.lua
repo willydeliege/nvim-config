@@ -169,10 +169,10 @@ M.setup_lsp_config = function()
 
 	-- set LSP diagnostic symbols/signs
 	-- ─────────────────────────────────────────────────--
-	api.nvim_command [[ sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl= ]]
-	api.nvim_command [[ sign define DiagnosticSignWarn  text= texthl=DiagnosticSignWarn  linehl= numhl= ]]
-	api.nvim_command [[ sign define DiagnosticSignInfo  text= texthl=DiagnosticSignInfo  linehl= numhl= ]]
-	api.nvim_command [[ sign define DiagnosticSignHint  text= texthl=DiagnosticSignHint  linehl= numhl= ]]
+	api.nvim_command [[ sign define DiagnosticSignError text=E texthl=DiagnosticSignError linehl= numhl= ]]
+	api.nvim_command [[ sign define DiagnosticSignWarn  text=W texthl=DiagnosticSignWarn  linehl= numhl= ]]
+	api.nvim_command [[ sign define DiagnosticSignInfo  text=I texthl=DiagnosticSignInfo  linehl= numhl= ]]
+	api.nvim_command [[ sign define DiagnosticSignHint  text=H texthl=DiagnosticSignHint  linehl= numhl= ]]
 
 	api.nvim_command [[ hi DiagnosticUnderlineError cterm=underline gui=underline guisp=#840000 ]]
 	api.nvim_command [[ hi DiagnosticUnderlineHint cterm=underline  gui=underline guisp=#07454b ]]

@@ -1,4 +1,3 @@
-
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━❰ Plugin-Independent Configs ❱━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
@@ -17,7 +16,7 @@ local api = vim.api
 
 -- set theme
 pcall(require, 'plugins.Abstract_cs')
-vim.g.vimwiki_global_ext = 0
+
 vim.g.python3_host_prog = '/data/data/com.termux/files/usr/bin/python'
 opt.termguicolors = true -- Enable GUI colors for the terminal to get truecolor
 opt.list = true -- show whitespace
@@ -40,7 +39,7 @@ opt.fillchars = {
 
 -- backup reated options
 -- neovim backup directory
-local backup_dir = vim.fn.stdpath('data').."/.cache"
+local backup_dir = vim.fn.stdpath('data') .. "/.cache"
 opt.backup = true -- make backups before writing
 opt.undofile = true -- persistent undos - undo after you re-open the file
 opt.writebackup = true -- Make backup before overwriting the current buffer
@@ -49,8 +48,9 @@ opt.directory = backup_dir .. '/swap' -- directory to place swap files in
 opt.backupdir = backup_dir .. '/backedUP' -- where to put backup files
 opt.undodir = backup_dir .. '/undos' -- where to put undo files
 opt.viewdir = backup_dir .. '/view' -- where to store files for :mkview
-opt.shada = "'100,<50,f50,n"..backup_dir.."/shada/shada"
+opt.shada = "'100,<50,f50,n" .. backup_dir .. "/shada/shada"
 
+opt.signcolumn = 'auto:4'
 opt.clipboard = vim.opt.clipboard + "unnamedplus" -- copy & paste
 opt.wrap = false -- don't automatically wrap on load
 opt.showmatch = true -- show the matching part of the pair for [] {} and ()
@@ -106,27 +106,27 @@ opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
 -- ━━━━━━━━━━━━━━━━━━━❰ Automate ❱━━━━━━━━━━━━━━━━━━━━ --
 
-local group = api.nvim_create_augroup("AbstractAutoGroup", {clear=true})
+local group = api.nvim_create_augroup("AbstractAutoGroup", { clear = true })
 
 api.nvim_create_autocmd(
 	"TextYankPost",
 	{
-        desc = "highlight text on yank",
-        pattern = "*",
+		desc = "highlight text on yank",
+		pattern = "*",
 		group = group,
-        callback = function()
+		callback = function()
 			vim.highlight.on_yank {
-				higroup="Search", timeout=150, on_visual=true
+				higroup = "Search", timeout = 150, on_visual = true
 			}
-        end,
+		end,
 	}
 )
 
 api.nvim_create_autocmd(
 	"BufWinEnter",
 	{
-        desc = "jump to the last position when reopening a file",
-        pattern = "*",
+		desc = "jump to the last position when reopening a file",
+		pattern = "*",
 		group = group,
 		command = [[ if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]]
 	}
@@ -143,7 +143,18 @@ api.nvim_create_autocmd(
 )
 
 api.nvim_create_autocmd(
-	{"BufEnter", "FileType"},
+	{ "BufWritePost", "FileType" },
+	{
+		desc = "Run luafile when saving a lua file",
+		pattern = "*.lua",
+		group = group,
+		command = "luafile %"
+	}
+
+)
+
+api.nvim_create_autocmd(
+	{ "BufEnter", "FileType" },
 	{
 		desc = "don't auto comment new line",
 		pattern = "*",
@@ -171,14 +182,3 @@ api.nvim_create_autocmd(
 		command = "let @/ = ''",
 	}
 )
--- Moved here cause of the lazy loading of neo-tree
-
-vim.cmd([[nnoremap \ :Neotree toggle<cr>]])
--- ━━━━━━━━━━━━━━━━❰ end of Automate ❱━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-
-
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
--- ━━━━━━━━━❰ end of Plugin-Independent Configs ❱━━━━━━━━━━ --
--- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ --
-
