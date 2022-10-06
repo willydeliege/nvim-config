@@ -18,5 +18,5 @@ require("hlargs").setup {
 		{ fg = "#EEF06D" },
 		{ fg = "#8FB272" },
 	},
-	excluded_filetypes = { "lua", "rust", "typescript", "typescriptreact", "javascript", "javascriptreact", "java" },
+	excluded_filetypes = { "lua", "rust", "typescript", "typescriptreact", "javascript", "javascriptreact", "java", "markdown" },
 }

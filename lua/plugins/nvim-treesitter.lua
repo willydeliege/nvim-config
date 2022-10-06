@@ -20,7 +20,7 @@ function M.setup()
 	require("nvim-treesitter.configs").setup {
 		-- One of "all", "maintained" (parsers with maintainers), or a list of languages
 		ensure_installed = "all",
-		ignore_install = { "phpdoc", "markdown", "markdown_inline" };
+		ignore_install = { "phpdoc" };
 
 		-- Install languages synchronously (only applied to `ensure_installed`)
 		sync_install = false,
@@ -28,7 +28,7 @@ function M.setup()
 		highlight = {
 			-- `false` will disable the whole extension
 			enable = true,
-			-- additional_vim_regex_highlighting = { "markdown" }
+			additional_vim_regex_highlighting = { "markdown" }
 		},
 
 		rainbow = {

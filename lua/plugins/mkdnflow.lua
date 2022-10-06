@@ -57,7 +57,7 @@ require('mkdnflow').setup({
 		auto_extend_cols = false
 	},
 	mappings = {
-		MkdnEnter = { { 'n', 'v' }, '<CR>' },
+		MkdnEnter = {  'v' , '<CR>' },
 		MkdnTab = false,
 		MkdnSTab = false,
 		MkdnNextLink = { 'n', '<Tab>' },

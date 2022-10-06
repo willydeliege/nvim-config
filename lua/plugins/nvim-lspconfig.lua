@@ -60,15 +60,13 @@ local function set_lspkeymap()
 			d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
 			D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
 			f = { "<cmd>lua vim.lsp.buf.format {async = true}<CR>", "Format" },
-			R = { "<cmd>Lspsaga rename<cr>", "Rename" },
 			r = { "<cmd>Telescope lsp_references<CR>", "Reference" },
 			F = { "<cmd>Lspsaga lsp_finder<cr>", "Finder (saga)" },
-			s = { "<cmd>Lspsaga hover_doc<cr>", "Signature help" },
 			h = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-			a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+			a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 			t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition" },
 			i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
-			S = { "<cmd>LSoutlineToggle<cr>", "Symbols" },
+			s = { "<cmd>AerialToggle<cr>", "Symbols" },
 			n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic" },
 			p = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous diagnostic" },
 		}
@@ -97,7 +95,6 @@ M.on_attach = function(client, bufnr)
 	caps.documentRangeFormattingProvider = true
 
 	-- Enable completion triggered by <c-x><c-o>
-	require("nvim-navic").attach(client, bufnr)
 
 	if client.name == "jdtls" then
 		vim.notify("jdt.ls")

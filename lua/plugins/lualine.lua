@@ -97,7 +97,7 @@ local icons = require "plugins.icons"
 
 -- Temporary disable winbar due to this issue
 -- https://github.com/neovim/neovim/issues/19458
-local winbar = require "plugins.winbar"
+-- local winbar = require "plugins.winbar"
 local function words()
 	return tostring(vim.fn.wordcount().words)
 end
@@ -112,21 +112,21 @@ function M.setup()
 			section_separators = { left = " ", right = "" },
 			disabled_filetypes = {
 				statusline = { "neo-tree" },
-				winbar = {
-					"help",
-					"startify",
-					"dashboard",
-					"packer",
-					"neogitstatus",
-					"NvimTree",
-					"neo-tree",
-					"Trouble",
-					"alpha",
-					"lir",
-					"Outline",
-					"spectre_panel",
-					"toggleterm",
-				},
+				-- winbar = {
+				-- 	"help",
+				-- 	"startify",
+				-- 	"dashboard",
+				-- 	"packer",
+				-- 	"neogitstatus",
+				-- 	"NvimTree",
+				-- 	"neo-tree",
+				-- 	"Trouble",
+				-- 	"alpha",
+				-- 	"lir",
+				-- 	"Outline",
+				-- 	"spectre_panel",
+				-- 	"toggleterm",
+				-- },
 			},
 			always_divide_middle = true,
 			globalstatus = true,
@@ -163,22 +163,22 @@ function M.setup()
 		},
 		-- Temporary disable winbar due to this issue
 		-- https://github.com/neovim/neovim/issues/19458
-		winbar = {
-			lualine_a = { "diagnostics" },
-			lualine_b = {},
-			lualine_c = {},
-			lualine_x = { winbar.get_winbar },
-			lualine_y = {},
-			lualine_z = {},
-		},
-		inactive_winbar = {
-			lualine_a = {},
-			lualine_b = {},
-			lualine_c = {},
-			lualine_x = {},
-			lualine_y = {},
-			lualine_z = {},
-		},
+		-- winbar = {
+		-- 	lualine_a = { "diagnostics" },
+		-- 	lualine_b = {},
+		-- 	lualine_c = {},
+		-- 	lualine_x = { winbar.get_winbar },
+		-- 	lualine_y = {},
+		-- 	lualine_z = {},
+		-- },
+		-- inactive_winbar = {
+		-- 	lualine_a = {},
+		-- 	lualine_b = {},
+		-- 	lualine_c = {},
+		-- 	lualine_x = {},
+		-- 	lualine_y = {},
+		-- 	lualine_z = {},
+		-- },
 		extensions = { "nvim-tree", "toggleterm", "quickfix" },
 	}
 end

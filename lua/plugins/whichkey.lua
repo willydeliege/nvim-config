@@ -36,5 +36,9 @@ local mappings = {
 		w = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Current Buffer" },
 		p = { "<cmd>Telescope projects<cr>", "Projects" },
 	},
+	z = {
+		name = "Zettelkasten",
+		i = { ":edit /home/willefi/willydeliege/index.md<cr>", "Index" }
+	},
 }
 whichkey.register(mappings, opts)

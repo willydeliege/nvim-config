@@ -32,25 +32,8 @@ function M.setup()
   set_hl(0, "LspTypeParameter", { link = "TSType" })
   set_hl(0, "LspVariable", { link = "TSVariable" })
 
-  -- modifier
-  -- set_hl(0, "LspDeclaration", { link = "TSDefine" })
-  -- set_hl(0, "LspDefinition", { link = "TSTypeDefinition" })
-  -- set_hl(0, "LspReadonly", { link = "TSContant" })
-  -- set_hl(0, "LspStatic", { link = "TSConsantMacro" })
-  -- set_hl(0, "LspDeprecated", { link = "TSWarning" })
-  -- set_hl(0, "LspAbstract", { fg = "#9E6162" })
-  -- set_hl(0, "LspAsync", { fg = "#81A35C" })
-  -- set_hl(0, "LspModification", { fg = "#7E5CA3" })
-  -- set_hl(0, "LspDocumentation", { fg = "#ccc0f5" })
-  -- set_hl(0, "LspDefaultLibrary", { fg = "#c99dc1" })
-
   require("nvim-semantic-tokens").setup {
     preset = "default",
-    -- highlighters is a list of modules following the interface of nvim-semantic-tokens.table-highlighter or
-    -- function with the signature: highlight_token(ctx, token, highlight) where
-    --        ctx (as defined in :h lsp-handler)
-    --        token  (as defined in :h vim.lsp.semantic_tokens.on_full())
-    --        highlight (a helper function that you can call (also multiple times) with the determined highlight group(s) as the only parameter)
     highlighters = { require "nvim-semantic-tokens.table-highlighter" },
   }
 end

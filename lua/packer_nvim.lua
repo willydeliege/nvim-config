@@ -112,12 +112,15 @@ return packer.startup {
 		}
 		use { "mattn/calendar-vim" }
 		use { "tools-life/taskwiki", disable = false }
-		use { "xarthurx/taskwarrior.vim" }
+		use { "majutsushi/tagbar" }
+		use { "powerman/vim-plugin-AnsiEsc" }
 		use { 'jakewvincent/mkdnflow.nvim',
 			config = function()
 				require('plugins.mkdnflow')
 			end,
 			disable = false }
+		use { 'godlygeek/tabular' }
+		use { 'preservim/vim-markdown' }
 		use { -- show startup time
 			'dstein64/vim-startuptime',
 			commit = commits.startuptime,
@@ -145,17 +148,6 @@ return packer.startup {
 		}
 		-- If you are using Pecker
 		use { 'folke/tokyonight.nvim' }
-		use { 'marko-cerovac/material.nvim',
-			config = function()
-				require("material").setup({
-					high_visibility = {
-						darker = true -- Enable higher contrast text for darker style
-					},
-					lualine_style = "stealth"
-				})
-			end
-		}
-
 		use { "RRethy/vim-illuminate" }
 
 		use { -- A collection of common configurations for Neovim's built-in language server client
@@ -216,14 +208,6 @@ return packer.startup {
 			'stevearc/aerial.nvim',
 			config = function() require('aerial').setup() end
 		}
-		--[[ use({ -- lsp ui's
-			"glepnir/lspsaga.nvim",
-			branch = "main",
-			commit = commits.lspsaga,
-			after = "nvim-lspconfig",
-			config = function() require('plugins/lspsaga_nvim') end
-		})
-]]
 		use { -- Nvim Treesitter configurations and abstraction layer
 			'nvim-treesitter/nvim-treesitter',
 			commit = commits.nvim_treesitter,
@@ -291,12 +275,6 @@ return packer.startup {
 				require('plugins/nvim-cmp')
 				require('plugins/LuaSnip')
 			end
-		}
-		use {
-			"m-demare/hlargs.nvim",
-			config = function()
-				require("plugins.hlargs")
-			end,
 		}
 		use {
 			"theHamsta/nvim-semantic-tokens",
@@ -421,11 +399,10 @@ return packer.startup {
 				require("plugins.lualine").setup()
 			end
 		}
-		use {
-			"SmiteshP/nvim-navic",
-			requires = "neovim/nvim-lspconfig"
-		}
-		-- using packer.nvim
+		-- use {
+		-- 	"SmiteshP/nvim-navic",
+		-- 	requires = "neovim/nvim-lspconfig"
+		-- }
 		use { --  A simple wrapper around :mksession
 			'Shatur/neovim-session-manager',
 			commit = commits.neovim_session_manager,
@@ -442,12 +419,6 @@ return packer.startup {
 			"folke/which-key.nvim",
 			config = function()
 				require("plugins.whichkey")
-			end
-		}
-
-		use { "mrjones2014/legendary.nvim",
-			config = function()
-				require("legendary").setup({})
 			end
 		}
 
